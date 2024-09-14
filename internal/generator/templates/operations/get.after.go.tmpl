@@ -1,0 +1,9 @@
+package {{.EntityName}}_operations
+
+import (
+	{{.EntityName}} "github.com/bakeable/bkry/data/entities/{{.PackagePath}}"
+)
+
+func afterGet({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}{{.VarName}} string, entity {{.EntityName}}.{{.TypeName}}) {{.EntityName}}.{{.TypeName}} {
+	return entity
+}

@@ -1,0 +1,21 @@
+type EntityTypeName = {{.EntityNameTypes}}
+
+type EntityName = {{.EntityNames}}
+
+export const entityCollectionNameToEntityName: Record<string, EntityName> = Object.freeze({
+{{- range .Entities}}
+  {{.CollectionName}}: '{{.EntityName}}',
+{{- end}}
+})
+
+export const entityNameToTypeName: Record<EntityName, EntityTypeName> = Object.freeze({
+{{- range .Entities}}
+  {{.EntityName}}: '{{.TypeName}}',
+{{- end}}
+})
+
+export const entityTypeName: Record<EntityTypeName, EntityTypeName> = Object.freeze({
+{{- range .Entities}}
+  {{.TypeName}}: '{{.TypeName}}',
+{{- end}}
+})

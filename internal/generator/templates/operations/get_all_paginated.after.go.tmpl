@@ -1,0 +1,10 @@
+package {{.EntityName}}_operations
+
+import (
+	{{.EntityName}} "github.com/bakeable/bkry/data/entities/{{.PackagePath}}"
+)
+
+
+func afterGetAllPaginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}entities []{{.EntityName}}.{{.TypeName}}, pageSize int, pageNumber int, orderBy string, ascending bool) []{{.EntityName}}.{{.TypeName}} {
+	return entities
+}

@@ -1,0 +1,37 @@
+package {{.EntityName}}
+
+import "github.com/bakeable/bkry/third_party/gcloud/datastore"
+
+// Get retrieves a {{.TypeName}} from the database
+func Get(id string) ({{.TypeName}}, error) {
+    // Get the data from the database
+    entity, err := datastore.GetEntityById("{{.TypeName}}", id, nil)
+    if err != nil {
+        return {{.TypeName}}{}, err
+    }
+
+    // Convert the entity to a {{.TypeName}}
+    return Decode(entity), nil
+}
+
+func (e {{.TypeName}}) Get(id string) ({{.TypeName}}, error) {
+    return Get(id)
+}
+
+// Update updates a {{.TypeName}} in the database
+func Update(e {{.TypeName}}) error {
+    // Convert the {{.TypeName}} to an entity
+    entity := Encode(e)
+
+    // Update the entity in the database
+    _, err := datastore.UpdateEntityById("{{.TypeName}}", e.ID, entity, nil)
+    if err != nil {
+        return err
+    }
+
+    return nil
+}
+
+func (e {{.TypeName}}) Update() error {
+    return Update(e)
+}

@@ -1,0 +1,10 @@
+package {{.EntityName}}_operations
+
+import (
+	{{.EntityName}} "github.com/bakeable/bkry/data/entities/{{.PackagePath}}"
+)
+
+func beforeSave({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}entity {{.EntityName}}.{{.TypeName}}, editorID *string) {{.EntityName}}.{{.TypeName}} {
+	// Return {{.TypeName}}
+	return entity
+}

@@ -1,0 +1,3 @@
+package {{.EntityName}}_operations
+
+func beforeDelete({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}{{.VarName}} string) {}

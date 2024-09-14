@@ -1,0 +1,42 @@
+package {{.EntityName}}
+
+import (
+	"strings"
+)
+
+//// THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
+
+var collectionPath = "{{.CollectionPath}}"
+func GetCollectionPath({{.ParentParams}}) string {
+	output := collectionPath
+	{{- range .ParentsCamelCase}}
+	output = strings.Replace(output, "[{{.}}ID]", {{.}}ID, -1)
+	{{- end}}
+	return output
+}
+
+func (entity {{.TypeName}}) GetCollectionPath() string {
+	return GetCollectionPath({{.ParentProperties}})
+}
+
+var documentPath = "{{.DocumentPath}}"
+func GetDocumentPath({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}{{.VarName}} string) string {
+	output := documentPath
+	{{- range .ParentsCamelCase}}
+	output = strings.Replace(output, "[{{.}}ID]", {{.}}ID, -1)
+	{{- end}}
+	output = strings.Replace(output, "[{{.VarName}}]", {{.VarName}}, -1)
+	return output
+}
+
+func (entity {{.TypeName}}) GetDocumentPath() string {
+    return GetDocumentPath({{range .Parents}}entity.{{.}}ID, {{end}} entity.ID)
+}
+
+func (entity {{.TypeName}}) Encode() map[string]interface{} {
+	return Encode(entity)
+}
+
+func (entity {{.TypeName}}) GetID() string {
+	return entity.ID
+}

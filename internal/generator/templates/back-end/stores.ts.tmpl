@@ -1,0 +1,12 @@
+{{- range .EntityStoreImports}}
+{{.}}
+{{- end}}
+
+const stores: Record<EntityTypeName, any> = {
+{{- range .EntityStoreDefinitions }}
+    {{.}}
+{{- end}}
+}
+    
+
+export default stores

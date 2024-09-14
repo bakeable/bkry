@@ -1,0 +1,24 @@
+package api
+
+import (
+	"github.com/bakeable/bkry/api/middleware"
+{{- range . }}
+    {{.EntityName}}_routes "github.com/bakeable/bkry/api/{{.EntityName}}/routes"
+{{- end }}
+
+	"github.com/gin-gonic/gin"
+)
+
+// InitRoutes initializes all routes for different models
+func InitRoutes(r *gin.RouterGroup) {
+	r.Use(gin.RecoveryWithWriter(gin.DefaultErrorWriter))
+	r.Use(middleware.RecoveryWithWriter())
+
+{{range . }}
+	// Initialize routes for {{.EntityName}}
+	{{.EntityName}}_routes.InitRoutes(r)
+{{end }}
+
+	// Initialize custom routes
+	InitCustomRoutes(r)
+}

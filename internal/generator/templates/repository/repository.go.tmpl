@@ -1,0 +1,109 @@
+package repo
+
+import (
+	"github.com/bakeable/bkry/data/entities/{{.PackagePath}}"
+	"github.com/bakeable/bkry/data/repository"
+	"github.com/bakeable/bkry/third_party/gcloud/datastore"
+	
+)
+
+//// THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
+
+var {{.TypeName}}Repo = repository.NewRepository[*{{.EntityName}}.{{.TypeName}}]()
+
+// Get{{.TypeName}} retrieves a single {{.TypeName}} entity by its ID and {{.VarName}}.
+func Get{{.TypeName}}({{range .Parents}}{{.}}ID string, {{end}}{{.VarName}} string) ({{.EntityName}}.{{.TypeName}}, error) {
+	entityMap, err := {{.TypeName}}Repo.Read({{.EntityName}}.GetDocumentPath({{range .Parents}}{{.}}ID, {{end}} {{.VarName}}))
+	return {{.EntityName}}.Decode(entityMap), err
+}
+
+// Get{{.TypeName}}OrNew retrieves a single {{.TypeName}} entity by its ID and {{.VarName}}.
+func Get{{.TypeName}}OrNew({{range .Parents}}{{.}}ID string, {{end}}{{.VarName}} string) ({{.EntityName}}.{{.TypeName}}, error) {
+	entityMap, err := {{.TypeName}}Repo.Read({{.EntityName}}.GetDocumentPath({{range .Parents}}{{.}}ID, {{end}} {{.VarName}}))
+	if err != nil || entityMap == nil {
+		return {{.EntityName}}.{{.TypeName}}{}, err
+	}
+	return {{.EntityName}}.Decode(entityMap), err
+}
+
+// Get{{.TypeName}} retrieves a single {{.TypeName}} entity by its document path.
+func Get{{.TypeName}}ByPath(path string) ({{.EntityName}}.{{.TypeName}}, error) {
+	entityMap, err := {{.TypeName}}Repo.Read(path)
+	return {{.EntityName}}.Decode(entityMap), err
+}
+
+// Find{{.TypeName}} retrieves a {{.TypeName}} entity according to given queries.
+func Find{{.TypeName}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []datastore.Query) ({{.EntityName}}.{{.TypeName}}, error) {
+	entityMap, err := {{.TypeName}}Repo.Find({{.EntityName}}.GetCollectionPath({{.ParentVars}}), queries)
+	if err != nil || entityMap == nil {
+		return {{.EntityName}}.{{.TypeName}}{}, err
+	}
+	return {{.EntityName}}.Decode(entityMap), err
+}
+
+// GetAll{{.TypeNamePlural}} retrieves all {{.TypeName}} entities.
+func GetAll{{.TypeNamePlural}}({{.ParentParams}}) ([]{{.EntityName}}.{{.TypeName}}, error) {
+	entityMaps, err := {{.TypeName}}Repo.ReadAll({{.EntityName}}.GetCollectionPath({{.ParentVars}}))
+	if err != nil {
+		return []{{.EntityName}}.{{.TypeName}}{}, err
+	}
+	return {{.EntityName}}.DecodeAll(entityMaps), nil
+}
+
+
+// GetAll{{.TypeNamePlural}}Paginated retrieves all {{.TypeName}} entities in a paginated manner.
+func GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination datastore.Pagination) ([]{{.EntityName}}.{{.TypeName}}, datastore.Pagination, error) {
+	entityMaps, pagination, err := {{.TypeName}}Repo.ReadPaginated({{.EntityName}}.GetCollectionPath({{.ParentVars}}), pagination)
+	if err != nil {
+		return []{{.EntityName}}.{{.TypeName}}{}, pagination, err
+	}
+	return {{.EntityName}}.DecodeAll(entityMaps), pagination, nil
+}
+
+// Query{{.TypeNamePlural}} retrieves all {{.TypeName}} entities according to given queries.
+func Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []datastore.Query, pagination datastore.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error) {
+	entityMaps, err := {{.TypeName}}Repo.Query({{.EntityName}}.GetCollectionPath({{.ParentVars}}), queries, pagination)
+	if err != nil {
+		return []{{.EntityName}}.{{.TypeName}}{}, err
+	}
+	return {{.EntityName}}.DecodeAll(entityMaps), nil
+}
+
+// Query{{.TypeNamePlural}}Group retrieves all {{.TypeName}} entities according to given queries.
+func Query{{.TypeNamePlural}}Group(queries []datastore.Query) ([]{{.EntityName}}.{{.TypeName}}, error) {
+	entityMaps, err := {{.TypeName}}Repo.QueryGroup("{{.EntityNamePlural}}", queries)
+	if err != nil {
+		return []{{.EntityName}}.{{.TypeName}}{}, err
+	}
+	return {{.EntityName}}.DecodeAll(entityMaps), nil
+}
+
+// Create{{.TypeName}} creates a new {{.TypeName}} entity.
+func Create{{.TypeName}}({{range .Parents}}{{.}}ID string, {{end}}entity {{.EntityName}}.{{.TypeName}}, editorID *string) (string, error) {
+	{{- range .Parents}}
+	entity.{{.}}ID = {{.}}ID
+	{{- end}}
+	return {{.TypeName}}Repo.Create(&entity, editorID)
+}
+
+// Update{{.TypeName}} updates an existing {{.TypeName}} entity.
+func Update{{.TypeName}}({{range .Parents}}{{.}}ID string, {{end}}entity {{.EntityName}}.{{.TypeName}}, editorID *string) (string, error) {
+	{{- range .Parents}}
+	entity.{{.}}ID = {{.}}ID
+	{{- end}}
+	return {{.TypeName}}Repo.Update(&entity, editorID)
+}
+
+// Save{{.TypeName}} saves a {{.TypeName}} entity. If the entity has an ID, it updates the existing entity; otherwise, it creates a new entity.
+func Save{{.TypeName}}({{range .Parents}}{{.}}ID string, {{end}}entity {{.EntityName}}.{{.TypeName}}, editorID *string) (string, error) {
+	if entity.ID == "" {
+		return Create{{.TypeName}}({{range .Parents}}{{.}}ID, {{end}}entity, editorID)
+	} else {
+		return Update{{.TypeName}}({{range .Parents}}{{.}}ID, {{end}}entity, editorID)
+	}
+}
+
+// Delete{{.TypeName}} deletes a {{.TypeName}} entity by its parents' path and {{.VarName}}.
+func Delete{{.TypeName}}({{range .Parents}}{{.}}ID string, {{end}}{{.VarName}} string) error {
+	return {{.TypeName}}Repo.Delete({{.EntityName}}.GetDocumentPath({{range .Parents}}{{.}}ID, {{end}}{{.VarName}}))
+}

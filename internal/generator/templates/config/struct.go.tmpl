@@ -1,0 +1,54 @@
+package {{.EntityName}}
+
+{{- if .StructImportsNotEmpty }}
+import (
+{{- range .StructImports }}
+	"{{.}}"
+{{- end }}
+   "github.com/bakeable/bkry/data/general/auditinfo"
+)
+{{- else }}
+import "github.com/bakeable/bkry/data/general/auditinfo"
+{{- end }}
+
+type {{.TypeName}} struct {
+	ID string `json:"id"`
+	Modified auditinfo.AuditInfo `json:"modified"`
+	Created auditinfo.AuditInfo `json:"created"`
+	{{- range .Fields}}
+	{{- if .Description }}
+	// {{.Description}}
+	{{- end}}
+	{{.FieldName}} {{if .IsArray}}[]{{end}}{{.FieldType}} `json:"{{.JsonName}}"`
+	{{- end}}
+}
+
+
+{{template "generateChildStructs" .Fields }}
+{{- template "generateEnums" .Fields }}
+
+{{define "generateChildStructs" }}
+{{- range . }}
+
+{{- if .IsChildStruct }}
+type {{.FieldType}} struct {
+	{{- range .Fields }}
+	// {{.Description}}
+	{{.FieldName}} {{if .IsArray}}[]{{end}}{{.FieldType}} `json:"{{.JsonName}}"`
+	{{- end }}
+}
+{{- template "generateChildStructs" .Fields }}
+{{- template "generateEnums" .Fields }}
+{{- end }}
+{{- end }}
+{{end }}
+
+{{define "generateEnums" }}
+{{- range . }}
+{{- if not .IsDuplicateEnum }}
+{{- if .IsEnum }}
+type {{.FieldType}} string
+{{- end }}
+{{- end }}
+{{- end }}
+{{end }}

@@ -1,0 +1,13 @@
+{{- range .EntityStoreImports}}
+{{.}}
+{{- end}}
+import { type EntityTypeName } from './types/types.gen';
+
+const stores: Record<EntityTypeName, any> = {
+{{- range .EntityStoreDefinitions }}
+    {{.}}
+{{- end}}
+}
+    
+
+export default stores

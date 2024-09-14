@@ -1,0 +1,44 @@
+package {{.EntityName}}
+
+// Encode converts a {{.TypeName}} struct to a map
+func Encode(e {{.TypeName}}) map[string]interface{} {
+    result := map[string]interface{}{
+        "id": e.ID,
+        "created": e.Created.Encode(),
+        "modified": e.Modified.Encode(),
+        {{- range .Fields }}
+        "{{.JsonName}}": {{if .IsChildStruct}}Encode{{.FieldType}}{{if .IsArray}}Array{{end}}(e.{{.FieldName}}){{else}}e.{{.FieldName}}{{end}},
+        {{- end }}
+    }
+    return result
+}
+
+{{- template "generateEncodeChildStructs" .Fields }}
+
+{{define "generateEncodeChildStructs" }}
+{{- range . }}
+{{- if .IsChildStruct }}
+// Encode{{.FieldType}}{{if .IsArray}}Array{{end}} converts a {{.FieldType}} struct to a map
+func Encode{{.FieldType}}{{if .IsArray}}Array{{end}}(e {{if .IsArray}}[]{{end}}{{.FieldType}}) {{if .IsArray}}[]{{end}}map[string]interface{} {
+{{- if .IsArray }}
+    result := make([]map[string]interface{}, len(e))
+    for i, v := range e {
+        result[i] = map[string]interface{}{
+            {{- range .Fields }}
+            "{{.JsonName}}": {{if .IsChildStruct}}Encode{{.FieldType}}{{if .IsArray}}Array{{end}}(v.{{.FieldName}}){{else}}v.{{.FieldName}}{{end}},
+            {{- end }}
+        }
+    }
+    return result
+{{- else }}
+    return map[string]interface{}{
+        {{- range .Fields }}
+        "{{.JsonName}}": {{if .IsChildStruct}}Encode{{.FieldType}}{{if .IsArray}}Array{{end}}(e.{{.FieldName}}){{else}}e.{{.FieldName}}{{end}},
+        {{- end }}
+    }
+{{- end }}
+}
+{{- template "generateEncodeChildStructs" .Fields }}
+{{- end }}
+{{- end }}
+{{end }}

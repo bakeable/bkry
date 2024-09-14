@@ -1,0 +1,20 @@
+import {
+  {{- range .Entities}}
+  type {{.TypeName}},
+  {{- end}}
+} from '../entities';
+
+type EntityTypeName = {{.EntityNameTypes}}
+
+type EntityName = {{.EntityNames}}
+
+type EntityClass = 
+    {{- range .Entities}}
+    | {{.TypeName}}
+    {{- end}};
+
+interface IEntityClassMap {
+{{- range .Entities}}
+  {{.TypeName}}: {{.TypeName}};
+{{- end}}
+}

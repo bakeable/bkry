@@ -1,0 +1,10 @@
+package {{.EntityName}}_operations
+
+import (
+	{{.EntityName}} "github.com/bakeable/bkry/data/entities/{{.PackagePath}}"
+)
+
+
+func afterQueryGroup(entities []{{.EntityName}}.{{.TypeName}}) []{{.EntityName}}.{{.TypeName}} {
+	return entities
+}

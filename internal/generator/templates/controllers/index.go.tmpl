@@ -1,0 +1,77 @@
+package {{.EntityName}}_controllers
+
+import (
+	repo "github.com/bakeable/bkry/data/repository/entities"
+
+	"github.com/gin-gonic/gin"
+)
+
+func getRepository() repo.IRepository {
+	return repo.NewRepository()
+}
+
+// Create interface for the controllers
+type IControllers interface {
+	{{- if notIn "add" .ExcludedEndpoints}}
+	Add(c *gin.Context)
+	{{- end}}
+	{{- if notIn "get" .ExcludedEndpoints}}
+	Get(c *gin.Context)
+	{{- end}}
+	{{- if notIn "get_all" .ExcludedEndpoints}}
+	GetAll(c *gin.Context)
+	GetAllPaginated(c *gin.Context)
+	{{- end}}
+	{{- if notIn "query" .ExcludedEndpoints}}
+	Query(c *gin.Context)
+	{{- end}}
+	{{- if notIn "update" .ExcludedEndpoints}}
+	Update(c *gin.Context)
+	{{- end}}
+	{{- if notIn "delete" .ExcludedEndpoints}}
+	Delete(c *gin.Context)
+	{{- end}}
+}
+
+// Create the controllers struct
+type Controllers struct {}
+func NewControllers() IControllers {
+	return Controllers{}
+}
+
+// Wrap the controllers
+{{- if notIn "add" .ExcludedEndpoints}}
+func (Controllers) Add(c *gin.Context) {
+	Add(c)
+}
+{{- end}}
+{{- if notIn "get" .ExcludedEndpoints}}
+func (Controllers) Get(c *gin.Context) {
+	Get(c)
+}
+{{- end}}
+{{- if notIn "get_all" .ExcludedEndpoints}}
+func (Controllers) GetAll(c *gin.Context) {
+	GetAll(c)
+}
+func (Controllers) GetAllPaginated(c *gin.Context) {
+	GetAllPaginated(c)
+}
+{{- end}}
+{{- if notIn "query" .ExcludedEndpoints}}
+func (Controllers) Query(c *gin.Context) {
+	Query(c)
+}
+{{- end}}
+{{- if notIn "update" .ExcludedEndpoints}}
+func (Controllers) Update(c *gin.Context) {
+	Update(c)
+}
+{{- end}}
+{{- if notIn "delete" .ExcludedEndpoints}}
+func (Controllers) Delete(c *gin.Context) {
+	Delete(c)
+}
+{{- end}}
+
+

@@ -1,0 +1,25 @@
+package {{.EntityName}}
+
+var ExampleJSON = `{
+  {{- range .Fields }}
+    {{- if .IsChildStruct }}
+    {{.JsonName}}: {
+        {{- template "generateObject" .Fields }}
+    }{{if .IsArray}}[]{{end}}, // {{.Description}}
+    {{- else if not .FieldTypeIsExternal }}
+    {{.JsonName}}: {{.FieldTypeClient}}{{if .IsArray}}[]{{end}}, // {{.Description}}
+    {{- end }}
+  {{- end }}
+}`
+
+{{- define "generateObject" }}
+{{- range . }}
+    {{- if .IsChildStruct }}
+    {{.JsonName}}: {{if .IsArray}}[]{{ else }}{
+      {{- template "generateObject" .Fields }}
+    }{{end}}, // {{.Description}}
+    {{- else }}
+      {{.JsonName}}: {{.DefaultValueClient}}, // {{.Description}} {{if .IsEnum}}(an enum with possible values: {{.EnumValues}}){{end}}
+    {{- end }}
+{{- end }}
+{{- end }}
