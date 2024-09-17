@@ -10,7 +10,7 @@ func configTemplates(entity entities.MetaData) []TemplateFile {
 	var templates []TemplateFile
 	for _, configFile := range configFiles {
 		templates = append(templates, TemplateFile{
-			TemplateDir: "config",
+			TemplateDir: "golang/config",
 			FileName: configFile,
 			FileExtension: "go",
 			OutputDir: ServerDir + "data/entities/" + entity.PackagePath + "/",

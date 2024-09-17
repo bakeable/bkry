@@ -7,7 +7,7 @@ import (
 )
 var ClientDir = OutputDir + "client"
 var clientDataDir = ClientDir + "/src/data/"
-var clientTemplateDir = "client/entities/"
+var clientTemplateDir = "typescript/client/entities/"
 var clientOutputDir = clientDataDir + "entities/"
 var clientTemplates = []TemplateFile{
 	{
@@ -86,27 +86,27 @@ func generateClientEntity(entity entities.MetaData) {
 
 var clientOverviewTemplates = []TemplateFile{
 	{
-		TemplateDir: "client",
+		TemplateDir: "typescript/client",
 		FileName: "stores",
 		FileExtension: "ts",
 		OutputDir: clientDataDir,
 	},
 	{
-		TemplateDir: "client",
+		TemplateDir: "typescript/client",
 		FileName: "types",
 		FileExtension: "d.ts",
 		OutputDir: filepath.Join(clientDataDir, "types/"),
 		ForceWrite: true,
 	},
 	{
-		TemplateDir: "client",
+		TemplateDir: "typescript/client",
 		FileName: "types",
 		FileExtension: "ts",
 		OutputDir: filepath.Join(clientDataDir, "types/"),
 		ForceWrite: true,
 	},
 	{
-		TemplateDir: "client",
+		TemplateDir: "typescript/client",
 		FileName: "index",
 		FileExtension: "ts",
 		OutputDir: filepath.Join(clientDataDir, "entities/"),

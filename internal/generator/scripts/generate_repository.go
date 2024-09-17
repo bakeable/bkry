@@ -11,7 +11,7 @@ type RepositoryInterfaceData struct {
 func GenerateRepository(entitySlice []entities.MetaData) {
 	// Generate index file for the entity
 	build(TemplateFile{
-		TemplateDir: "repository",
+		TemplateDir: "golang/repository",
 		FileName: "repo_interface",
 		FileExtension: "go",
 		OutputDir: ServerDir + "data/repository/entities/",
@@ -22,7 +22,7 @@ func GenerateRepository(entitySlice []entities.MetaData) {
 	// Generate repository files for the entity
 	for _, entity := range entitySlice {
 		build(TemplateFile{
-			TemplateDir: "repository",
+			TemplateDir: "golang/repository",
 			FileName: "repository",
 			FileExtension: "go",
 			OutputDir: ServerDir + "data/repository/entities/",

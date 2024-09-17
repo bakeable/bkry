@@ -1,6 +1,6 @@
 package dimension
 
-import "github.com/bakeable/bkry/utils"
+import utils "github.com/bakeable/bkry/tools"
 
 // Decode a database map to an Dimension struct
 func Decode(data interface{}) Dimension {

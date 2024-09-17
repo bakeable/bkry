@@ -17,7 +17,7 @@ func GenerateRoutes(entities []entities.MetaData) {
 func generateRoutes(entity entities.MetaData) {
 	// Generate default route file
 	build(TemplateFile{
-		TemplateDir: "routes",
+		TemplateDir: "golang/routes",
 		FileName: "default",
 		FileExtension: "go",
 		OutputDir: ServerDir + "api/" + entity.PackagePath + "/routes/",
@@ -25,7 +25,7 @@ func generateRoutes(entity entities.MetaData) {
 
 	// Generate custom route file
 	build(TemplateFile{
-		TemplateDir: "routes",
+		TemplateDir: "golang/routes",
 		FileName: "custom",
 		FileExtension: "go",
 		OutputDir: ServerDir + "api/" + entity.PackagePath + "/routes/",
@@ -35,7 +35,7 @@ func generateRoutes(entity entities.MetaData) {
 
 func generateApi(entities []entities.MetaData) {
 	build(TemplateFile{
-		TemplateDir: "",
+		TemplateDir: "golang",
 		FileName: "api",
 		FileExtension: "go",
 		OutputDir: ServerDir + "api/",

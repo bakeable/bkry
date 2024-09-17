@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/bakeable/bkry/internal/generator/entities"
-	"github.com/bakeable/bkry/utils"
+	utils "github.com/bakeable/bkry/tools"
 
 	"github.com/jinzhu/inflection"
 )

@@ -26,7 +26,7 @@ func operationTemplates(entity entities.MetaData) []TemplateFile {
 	for _, action := range actions {
 		if action.HasBefore {
 			templateFiles = append(templateFiles, TemplateFile{
-				TemplateDir: "operations",
+				TemplateDir: "golang/operations",
 				FileName: action.Name + ".before",
 				FileExtension: "go",
 				OutputDir: ServerDir + "data/entities/" + entity.PackagePath + "/operations/",
@@ -34,7 +34,7 @@ func operationTemplates(entity entities.MetaData) []TemplateFile {
 		}
 		if action.HasAfter {
 			templateFiles = append(templateFiles, TemplateFile{
-				TemplateDir: "operations",
+				TemplateDir: "golang/operations",
 				FileName: action.Name + ".after",
 				FileExtension: "go",
 				OutputDir: ServerDir + "data/entities/" + entity.PackagePath + "/operations/",
@@ -42,7 +42,7 @@ func operationTemplates(entity entities.MetaData) []TemplateFile {
 		}
 
 		templateFiles = append(templateFiles, TemplateFile{
-			TemplateDir: "operations",
+			TemplateDir: "golang/operations",
 			FileName: action.Name,
 			FileExtension: "go",
 			OutputDir: ServerDir + "data/entities/" + entity.PackagePath + "/operations/",

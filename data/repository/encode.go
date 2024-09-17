@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	"github.com/bakeable/bkry/utils"
+	utils "github.com/bakeable/bkry/tools"
 )
 
 func tryEncode(foreignKeyMap *EntityForeignKeyMap) map[string]interface{} {

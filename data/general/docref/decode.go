@@ -1,6 +1,6 @@
 package docref
 
-import "github.com/bakeable/bkry/utils"
+import utils "github.com/bakeable/bkry/tools"
 
 func Decode(m interface{}) DocRef {
 	if m == nil {

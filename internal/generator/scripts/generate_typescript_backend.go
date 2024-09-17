@@ -8,7 +8,7 @@ import (
 
 var BackEndDir = OutputDir + "functions"
 var backEndDataDir = BackEndDir + "/src/data/"
-var backEndTemplateDir = "back-end/entities/"
+var backEndTemplateDir = "typescript/back-end/entities/"
 var backEndOutputDir = backEndDataDir + "entities/"
 var backEndTemplates = []TemplateFile{
 	{
@@ -78,21 +78,21 @@ func generateBackendEntity(entity entities.MetaData) {
 
 var overviewTemplates = []TemplateFile{
 	{
-		TemplateDir: "back-end",
+		TemplateDir: "typescript/back-end",
 		FileName: "types",
 		FileExtension: "d.ts",
 		OutputDir: filepath.Join(backEndDataDir, "types/"),
 		ForceWrite: true,
 	},
 	{
-		TemplateDir: "back-end",
+		TemplateDir: "typescript/back-end",
 		FileName: "types",
 		FileExtension: "ts",
 		OutputDir: filepath.Join(backEndDataDir, "types/"),
 		ForceWrite: true,
 	},
 	{
-		TemplateDir: "back-end",
+		TemplateDir: "typescript/back-end",
 		FileName: "index",
 		FileExtension: "ts",
 		OutputDir: filepath.Join(backEndDataDir, "entities/"),

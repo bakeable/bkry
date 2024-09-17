@@ -7,16 +7,25 @@ import (
 	"os"
 	"path/filepath"
 	"text/template"
+
+	"github.com/bakeable/bkry/internal/generator/entities"
 )
 type TemplateFile struct {
-	TemplateDir string
-	FileName string
-	FileExtension string
-	OutputDir string
-	OutputFileName string
-	ForceWrite bool
-	InitializeOnly bool
+	TemplateDir string `json:"template_dir"`
+	FileName string `json:"file_name"`
+	FileExtension string `json:"file_extension"`
+	OutputDir string `json:"output_dir"`
+	OutputFileName string `json:"output_file_name"`
+	ForceWrite bool `json:"force_write"`
+	InitializeOnly bool `json:"initialize_only"`
+	InputData InputData `json:"input_data"`
 }
+
+type InputData string
+const (
+	Entity InputData = "entity"
+	Entities InputData = "entities"
+)
 
 func build(templateFile TemplateFile, data interface{}) {
 	// Get the template data
@@ -74,6 +83,13 @@ func build(templateFile TemplateFile, data interface{}) {
 	}
 
 	fmt.Println("Generated " + filePath)
+
+	// Check if the data is a slice or not
+	if _, ok := data.([]entities.MetaData); ok {
+		templateFile.InputData = Entities
+	} else {
+		templateFile.InputData = Entity
+	}
 
 	addToJSON(TemplateDir + "template_files.json", templateFile)
 }

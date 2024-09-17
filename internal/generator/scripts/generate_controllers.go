@@ -22,7 +22,7 @@ func controllerTemplates(entity entities.MetaData) []TemplateFile {
 
 		if !exclude {
 			templateFiles = append(templateFiles, TemplateFile{
-				TemplateDir: "controllers",
+				TemplateDir: "golang/controllers",
 				FileName: endpoint,
 				FileExtension: "go",
 				OutputDir: ServerDir + "api/" + entity.PackagePath + "/controllers/",
@@ -32,7 +32,7 @@ func controllerTemplates(entity entities.MetaData) []TemplateFile {
 
 	// Create index file for the entity
 	templateFiles = append(templateFiles, TemplateFile{
-		TemplateDir: "controllers",
+		TemplateDir: "golang/controllers",
 		FileName: "index",
 		FileExtension: "go",
 		OutputDir: ServerDir + "api/" + entity.PackagePath + "/controllers/",
