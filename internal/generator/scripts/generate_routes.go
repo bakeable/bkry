@@ -1,7 +1,7 @@
 package generator
 
 import (
-	"github.com/bakeable/bkry/internal/generator/entities"
+	"github.com/bakeable/bkry/input/entities"
 )
 
 func GenerateRoutes(entities []entities.MetaData) {

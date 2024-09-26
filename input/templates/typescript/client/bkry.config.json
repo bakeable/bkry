@@ -1,0 +1,25 @@
+[
+    {
+        "path": "entities/**",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "data": "single_entity"
+    },
+    {
+        "path": "types.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/types/",
+        "output_file": "types.gen.d.ts",
+        "data": "entity_overview"
+    },
+    {
+        "path": "types.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/types/",
+        "output_file": "types.gen.ts",
+        "data": "entity_overview"
+    },
+    {
+        "path": "index.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/",
+        "output_file": "index.ts",
+        "data": "entity_overview"
+    }
+]

@@ -5,11 +5,47 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/bakeable/bkry/internal/generator/entities"
+	"github.com/bakeable/bkry/input/entities"
 	utils "github.com/bakeable/bkry/tools"
 
 	"github.com/jinzhu/inflection"
 )
+
+func GetOverview() entities.ClientOverview {
+	// Get entities
+	metadata := entities.GetMetaData()	
+	localizedEntities := []entities.MetaData{}
+	for i, entity := range metadata {
+		fmt.Println("\n\nGenerating code for entity: " + entity.TypeName)
+		
+		// If entity is localizable, generate a child instance of the entity
+		if entity.IsLocalizable {
+			localizedEntity := Preprocess(entity.DeepCopy(), true)
+			localizedEntities = append(localizedEntities, localizedEntity)
+		}
+
+		// Preprocess all entities
+		metadata[i] = Preprocess(entity.DeepCopy(), false)
+	}
+
+	// Add localized entities to the data
+	metadata = append(metadata, localizedEntities...)
+
+	// Build the type
+	overview := entities.ClientOverview{
+		EntityNameTypes: "\n",
+		Entities: metadata,
+	}
+
+	for _, entity := range metadata {
+		overview.EntityNameTypes += " | '" + entity.TypeName + "'\n"
+		overview.EntityNames += " | '" + entity.EntityName + "'\n"
+		overview.EntityStoreImports = append(overview.EntityStoreImports, "import { create" + entity.TypeName + "Store } from './entities/" + entity.EntityName + "/store.gen';")
+		overview.EntityStoreDefinitions = append(overview.EntityStoreDefinitions, entity.TypeName + ": create" + entity.TypeName + "Store,")
+	}
+
+	return overview
+}
 
 
 func Preprocess(entity entities.MetaData, localized bool) entities.MetaData {

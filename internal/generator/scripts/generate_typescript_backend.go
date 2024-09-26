@@ -3,7 +3,7 @@ package generator
 import (
 	"path/filepath"
 
-	"github.com/bakeable/bkry/internal/generator/entities"
+	"github.com/bakeable/bkry/input/entities"
 )
 
 var BackEndDir = OutputDir + "functions"
@@ -100,16 +100,10 @@ var overviewTemplates = []TemplateFile{
 		ForceWrite: true,
 	},
 }
-type ClientOverview struct {
-	EntityNameTypes string
-	EntityStoreImports []string
-	EntityStoreDefinitions []string
-	EntityNames string
-	Entities []entities.MetaData
-}
+
 func generateBackendEntityOverview(data []entities.MetaData) {
 	// Build the type
-	overview := ClientOverview{
+	overview := entities.ClientOverview{
 		EntityNameTypes: "\n",
 		Entities: data,
 	}

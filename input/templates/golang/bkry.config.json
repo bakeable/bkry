@@ -1,0 +1,38 @@
+[
+    {
+        "path": "config/**",
+        "output_dir": "{ServerDir}/models/{EntityName}/",
+        "data": "single_entity"
+    },
+    {
+        "path": "controllers/**",
+        "output_dir": "{ServerDir}/transport/controllers/{EntityName}/",
+        "data": "single_entity"
+    },
+    {
+        "path": "operations/**",
+        "output_dir": "{ServerDir}/transport/operations/{EntityName}/",
+        "data": "single_entity"
+    },
+    {
+        "path": "repository/repository.go.tmpl",
+        "output_dir": "{ServerDir}/database/repository/",
+        "output_file": "{EntityName}.gen.go",
+        "data": "single_entity"
+    },
+    {
+        "path": "repository/repo_interface.go.tmpl",
+        "output_dir": "{ServerDir}/database/repository/",
+        "data": "all_entities"
+    },
+    {
+        "path": "routes/**",
+        "output_dir": "{ServerDir}/transport/routes/{EntityName}/",
+        "data": "single_entity"
+    },
+    {
+        "path": "api.go.tmpl",
+        "output_dir": "{ServerDir}/transport/api.gen.go",
+        "data": "all_entities"
+    }
+]

@@ -1,7 +1,7 @@
 package generator
 
 import (
-	"github.com/bakeable/bkry/internal/generator/entities"
+	"github.com/bakeable/bkry/input/entities"
 )
 
 var endpoints = []string{"add", "delete", "get", "get_all", "query", "get_all_paginated", "update"}

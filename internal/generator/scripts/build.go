@@ -1,14 +1,11 @@
 package generator
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"text/template"
-
-	"github.com/bakeable/bkry/internal/generator/entities"
 )
 type TemplateFile struct {
 	TemplateDir string `json:"template_dir"`
@@ -18,14 +15,8 @@ type TemplateFile struct {
 	OutputFileName string `json:"output_file_name"`
 	ForceWrite bool `json:"force_write"`
 	InitializeOnly bool `json:"initialize_only"`
-	InputData InputData `json:"input_data"`
+	InputData string `json:"input_data"`
 }
-
-type InputData string
-const (
-	Entity InputData = "entity"
-	Entities InputData = "entities"
-)
 
 func build(templateFile TemplateFile, data interface{}) {
 	// Get the template data
@@ -45,7 +36,7 @@ func build(templateFile TemplateFile, data interface{}) {
 	tmpl := template.Must(template.New(nonGeneratedFileName + ".tmpl").Funcs(template.FuncMap{
 		"notIn": notIn,
 		"alreadyGenerated": alreadyGenerated,
-	}).ParseFiles(filepath.Join("templates", templateDir, nonGeneratedFileName) + ".tmpl"))
+	}).ParseFiles(filepath.Join(templateDir, nonGeneratedFileName) + ".tmpl"))
 
 	// If an output file name is specified, use that
 	if templateFile.OutputFileName != "" {
@@ -57,6 +48,7 @@ func build(templateFile TemplateFile, data interface{}) {
 	filePath := filepath.Join(outputDir, nonGeneratedFileName)
 
 	// Create necessary directories if necessary
+	fmt.Println("Creating directory " + outputDir)
 	err := os.MkdirAll(outputDir, os.ModePerm)
 	if err != nil {
 		panic(err)
@@ -83,61 +75,37 @@ func build(templateFile TemplateFile, data interface{}) {
 	}
 
 	fmt.Println("Generated " + filePath)
-
-	// Check if the data is a slice or not
-	if _, ok := data.([]entities.MetaData); ok {
-		templateFile.InputData = Entities
-	} else {
-		templateFile.InputData = Entity
-	}
-
-	addToJSON(TemplateDir + "template_files.json", templateFile)
 }
 
-// readAndUpdateJSON reads the JSON file, adds the new object, and returns the updated array
-func addToJSON(filePath string, newTemplateFile TemplateFile) {
-	var objects []TemplateFile
-
-	// Try to read the file
-	file, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		// If the file doesn't exist, initialize an empty array
-		if os.IsNotExist(err) {
-			objects = []TemplateFile{}
-		} else {
-			panic(err)
-		}
-	} else {
-		// If the file exists, parse the JSON into the array
-		err = json.Unmarshal(file, &objects)
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	// Add the new object to the array
-	objects = append(objects, newTemplateFile)
-
-	// Save the JSON file
-	err = saveJSON(filePath, objects)
-	if err != nil {
-		panic(err)
+func (tf TemplateFile) DeepCopy() TemplateFile {
+	return TemplateFile{
+		TemplateDir: tf.TemplateDir,
+		FileName: tf.FileName,
+		FileExtension: tf.FileExtension,
+		OutputDir: tf.OutputDir,
+		OutputFileName: tf.OutputFileName,
+		ForceWrite: tf.ForceWrite,
+		InitializeOnly: tf.InitializeOnly,
+		InputData: tf.InputData,
 	}
 }
 
-// saveJSON saves the updated array of objects to the JSON file
-func saveJSON(filePath string, objects []TemplateFile) error {
-	data, err := json.MarshalIndent(objects, "", "  ")
-	if err != nil {
-		return err
+func (tf TemplateFile) DeepCopyWithVariables(variables map[string]string) TemplateFile {
+	replaceVariables := func (input string) string {
+		for key, value := range variables {
+			input = strings.ReplaceAll(input, "{" + key + "}", value)
+		}
+		return input
 	}
 
-	// Write the JSON data to the file
-	err = ioutil.WriteFile(filePath, data, 0644)
-	if err != nil {
-		return err
+	return TemplateFile{
+		TemplateDir: replaceVariables(tf.TemplateDir),
+		FileName: replaceVariables(tf.FileName),
+		FileExtension: replaceVariables(tf.FileExtension),
+		OutputDir: replaceVariables(tf.OutputDir),
+		OutputFileName: replaceVariables(tf.OutputFileName),
+		ForceWrite: tf.ForceWrite,
+		InitializeOnly: tf.InitializeOnly,
+		InputData: tf.InputData,
 	}
-
-	fmt.Println("File saved successfully")
-	return nil
 }
