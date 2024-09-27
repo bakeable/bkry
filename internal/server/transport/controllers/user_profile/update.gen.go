@@ -2,8 +2,8 @@ package user_profile_controllers
 
 import (
 	"net/http"
-	user_profile "github.com/bakeable/bkry/data/entities/user_profile"
-	user_profile_operations "github.com/bakeable/bkry/data/entities/user_profile/operations"
+	user_profile "github.com/bakeable/bkry/internal/server/models/entities/user_profile"
+	user_profile_operations "github.com/bakeable/bkry/internal/server/transport/operations/user_profile"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

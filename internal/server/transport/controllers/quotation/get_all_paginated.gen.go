@@ -2,7 +2,7 @@ package quotation_controllers
 
 import (
 	"net/http"
-	quotation_operations "github.com/bakeable/bkry/data/entities/quotation/operations"
+	quotation_operations "github.com/bakeable/bkry/internal/server/transport/operations/quotation"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

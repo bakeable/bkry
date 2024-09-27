@@ -1,8 +1,8 @@
 package printing_order_routes
 
 import (
-	printing_order_controllers "github.com/bakeable/bkry/api/printing_order/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	printing_order_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/printing_order"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

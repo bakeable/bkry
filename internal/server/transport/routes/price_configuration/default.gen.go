@@ -1,8 +1,8 @@
 package price_configuration_routes
 
 import (
-	price_configuration_controllers "github.com/bakeable/bkry/api/price_configuration/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	price_configuration_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/price_configuration"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

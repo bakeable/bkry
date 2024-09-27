@@ -2,7 +2,7 @@ package price_configuration_controllers
 
 import (
 	"net/http"
-	price_configuration_operations "github.com/bakeable/bkry/data/entities/price_configuration/operations"
+	price_configuration_operations "github.com/bakeable/bkry/internal/server/transport/operations/price_configuration"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

@@ -2,7 +2,7 @@ package product_controllers
 
 import (
 	"net/http"
-	product_operations "github.com/bakeable/bkry/data/entities/product/operations"
+	product_operations "github.com/bakeable/bkry/internal/server/transport/operations/product"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

@@ -2,7 +2,7 @@ package examination_task_controllers
 
 import (
 	"net/http"
-	examination_task_operations "github.com/bakeable/bkry/data/entities/examination_task/operations"
+	examination_task_operations "github.com/bakeable/bkry/internal/server/transport/operations/examination_task"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

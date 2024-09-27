@@ -1,8 +1,8 @@
 package airline_order_group_operations
 
 import (
-	airline_order_group "github.com/bakeable/bkry/data/entities/airline_order_group"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	airline_order_group "github.com/bakeable/bkry/internal/server/models/entities/airline_order_group"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

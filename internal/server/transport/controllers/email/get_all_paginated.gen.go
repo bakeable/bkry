@@ -2,7 +2,7 @@ package email_controllers
 
 import (
 	"net/http"
-	email_operations "github.com/bakeable/bkry/data/entities/email/operations"
+	email_operations "github.com/bakeable/bkry/internal/server/transport/operations/email"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

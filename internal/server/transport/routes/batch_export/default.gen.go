@@ -1,8 +1,8 @@
 package batch_export_routes
 
 import (
-	batch_export_controllers "github.com/bakeable/bkry/api/batch_export/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	batch_export_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/batch_export"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

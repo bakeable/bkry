@@ -1,9 +1,9 @@
 package api
 
 import (
-	"github.com/bakeable/bkry/api/middleware"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 {{- range . }}
-    {{.EntityName}}_routes "github.com/bakeable/bkry/api/{{.EntityName}}/routes"
+    {{.EntityName}}_routes "github.com/bakeable/bkry/internal/server/transport/routes/{{.EntityName}}"
 {{- end }}
 
 	"github.com/gin-gonic/gin"

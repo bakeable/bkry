@@ -1,8 +1,8 @@
 package examination_task_operations
 
 import (
-	examination_task "github.com/bakeable/bkry/data/entities/examination_task"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	examination_task "github.com/bakeable/bkry/internal/server/models/entities/examination_task"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

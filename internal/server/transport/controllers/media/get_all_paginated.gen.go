@@ -2,7 +2,7 @@ package media_controllers
 
 import (
 	"net/http"
-	media_operations "github.com/bakeable/bkry/data/entities/media/operations"
+	media_operations "github.com/bakeable/bkry/internal/server/transport/operations/media"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

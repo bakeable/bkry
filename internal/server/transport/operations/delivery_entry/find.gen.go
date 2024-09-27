@@ -1,8 +1,8 @@
 package delivery_entry_operations
 
 import (
-	delivery_entry "github.com/bakeable/bkry/data/entities/delivery_entry"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	delivery_entry "github.com/bakeable/bkry/internal/server/models/entities/delivery_entry"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

@@ -2,8 +2,8 @@ package email_controllers
 
 import (
 	"net/http"
-	email "github.com/bakeable/bkry/data/entities/email"
-	email_operations "github.com/bakeable/bkry/data/entities/email/operations"
+	email "github.com/bakeable/bkry/internal/server/models/entities/email"
+	email_operations "github.com/bakeable/bkry/internal/server/transport/operations/email"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

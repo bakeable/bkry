@@ -2,8 +2,8 @@ package attribute_option_controllers
 
 import (
 	"net/http"
-	attribute_option "github.com/bakeable/bkry/data/entities/attribute_option"
-	attribute_option_operations "github.com/bakeable/bkry/data/entities/attribute_option/operations"
+	attribute_option "github.com/bakeable/bkry/internal/server/models/entities/attribute_option"
+	attribute_option_operations "github.com/bakeable/bkry/internal/server/transport/operations/attribute_option"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

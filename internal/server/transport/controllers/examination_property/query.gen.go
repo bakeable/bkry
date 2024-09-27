@@ -1,7 +1,7 @@
 package examination_property_controllers
 
 import (
-	examination_property_operations "github.com/bakeable/bkry/data/entities/examination_property/operations"
+	examination_property_operations "github.com/bakeable/bkry/internal/server/transport/operations/examination_property"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

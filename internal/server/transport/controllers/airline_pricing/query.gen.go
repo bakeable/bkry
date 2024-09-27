@@ -1,7 +1,7 @@
 package airline_pricing_controllers
 
 import (
-	airline_pricing_operations "github.com/bakeable/bkry/data/entities/airline_pricing/operations"
+	airline_pricing_operations "github.com/bakeable/bkry/internal/server/transport/operations/airline_pricing"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

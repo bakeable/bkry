@@ -1,8 +1,8 @@
 package airline_pricing_routes
 
 import (
-	airline_pricing_controllers "github.com/bakeable/bkry/api/airline_pricing/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	airline_pricing_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/airline_pricing"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

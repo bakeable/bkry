@@ -1,8 +1,8 @@
 package media_operations
 
 import (
-	media "github.com/bakeable/bkry/data/entities/media"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	media "github.com/bakeable/bkry/internal/server/models/entities/media"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

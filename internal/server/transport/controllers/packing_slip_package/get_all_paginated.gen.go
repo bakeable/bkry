@@ -2,7 +2,7 @@ package packing_slip_package_controllers
 
 import (
 	"net/http"
-	packing_slip_package_operations "github.com/bakeable/bkry/data/entities/packing_slip_package/operations"
+	packing_slip_package_operations "github.com/bakeable/bkry/internal/server/transport/operations/packing_slip_package"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

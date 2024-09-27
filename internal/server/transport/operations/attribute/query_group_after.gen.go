@@ -1,7 +1,7 @@
 package attribute_operations
 
 import (
-	attribute "github.com/bakeable/bkry/data/entities/attribute"
+	attribute "github.com/bakeable/bkry/internal/server/models/entities/attribute"
 )
 
 

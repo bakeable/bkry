@@ -1,8 +1,8 @@
 package portal_event_operations
 
 import (
-	portal_event "github.com/bakeable/bkry/data/entities/portal_event"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	portal_event "github.com/bakeable/bkry/internal/server/models/entities/portal_event"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

@@ -1,7 +1,7 @@
 package attribute_option_controllers
 
 import (
-	attribute_option_operations "github.com/bakeable/bkry/data/entities/attribute_option/operations"
+	attribute_option_operations "github.com/bakeable/bkry/internal/server/transport/operations/attribute_option"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

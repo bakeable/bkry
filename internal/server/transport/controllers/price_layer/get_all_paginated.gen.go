@@ -2,7 +2,7 @@ package price_layer_controllers
 
 import (
 	"net/http"
-	price_layer_operations "github.com/bakeable/bkry/data/entities/price_layer/operations"
+	price_layer_operations "github.com/bakeable/bkry/internal/server/transport/operations/price_layer"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

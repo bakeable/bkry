@@ -2,8 +2,8 @@ package quotation_controllers
 
 import (
 	"net/http"
-	quotation "github.com/bakeable/bkry/data/entities/quotation"
-	quotation_operations "github.com/bakeable/bkry/data/entities/quotation/operations"
+	quotation "github.com/bakeable/bkry/internal/server/models/entities/quotation"
+	quotation_operations "github.com/bakeable/bkry/internal/server/transport/operations/quotation"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

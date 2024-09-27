@@ -2,8 +2,8 @@ package examination_task_controllers
 
 import (
 	"net/http"
-	examination_task "github.com/bakeable/bkry/data/entities/examination_task"
-	examination_task_operations "github.com/bakeable/bkry/data/entities/examination_task/operations"
+	examination_task "github.com/bakeable/bkry/internal/server/models/entities/examination_task"
+	examination_task_operations "github.com/bakeable/bkry/internal/server/transport/operations/examination_task"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

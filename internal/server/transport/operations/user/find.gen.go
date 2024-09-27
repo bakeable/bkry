@@ -1,8 +1,8 @@
 package user_operations
 
 import (
-	user "github.com/bakeable/bkry/data/entities/user"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	user "github.com/bakeable/bkry/internal/server/models/entities/user"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

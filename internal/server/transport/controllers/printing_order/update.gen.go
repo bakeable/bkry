@@ -2,8 +2,8 @@ package printing_order_controllers
 
 import (
 	"net/http"
-	printing_order "github.com/bakeable/bkry/data/entities/printing_order"
-	printing_order_operations "github.com/bakeable/bkry/data/entities/printing_order/operations"
+	printing_order "github.com/bakeable/bkry/internal/server/models/entities/printing_order"
+	printing_order_operations "github.com/bakeable/bkry/internal/server/transport/operations/printing_order"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

@@ -2,7 +2,7 @@ package airline_order_grouping_controllers
 
 import (
 	"net/http"
-	airline_order_grouping_operations "github.com/bakeable/bkry/data/entities/airline_order_grouping/operations"
+	airline_order_grouping_operations "github.com/bakeable/bkry/internal/server/transport/operations/airline_order_grouping"
 
 	"github.com/gin-gonic/gin"
 )

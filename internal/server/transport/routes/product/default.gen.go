@@ -1,8 +1,8 @@
 package product_routes
 
 import (
-	product_controllers "github.com/bakeable/bkry/api/product/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	product_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/product"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

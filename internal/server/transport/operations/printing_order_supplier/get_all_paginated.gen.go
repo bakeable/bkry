@@ -1,8 +1,8 @@
 package printing_order_supplier_operations
 
 import (
-	printing_order_supplier "github.com/bakeable/bkry/data/entities/printing_order_supplier"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	printing_order_supplier "github.com/bakeable/bkry/internal/server/models/entities/printing_order_supplier"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

@@ -2,8 +2,8 @@ package user_controllers
 
 import (
 	"net/http"
-	user "github.com/bakeable/bkry/data/entities/user"
-	user_operations "github.com/bakeable/bkry/data/entities/user/operations"
+	user "github.com/bakeable/bkry/internal/server/models/entities/user"
+	user_operations "github.com/bakeable/bkry/internal/server/transport/operations/user"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

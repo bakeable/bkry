@@ -2,7 +2,7 @@ package batch_export_controllers
 
 import (
 	"net/http"
-	batch_export_operations "github.com/bakeable/bkry/data/entities/batch_export/operations"
+	batch_export_operations "github.com/bakeable/bkry/internal/server/transport/operations/batch_export"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

@@ -2,8 +2,8 @@ package product_controllers
 
 import (
 	"net/http"
-	product "github.com/bakeable/bkry/data/entities/product"
-	product_operations "github.com/bakeable/bkry/data/entities/product/operations"
+	product "github.com/bakeable/bkry/internal/server/models/entities/product"
+	product_operations "github.com/bakeable/bkry/internal/server/transport/operations/product"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

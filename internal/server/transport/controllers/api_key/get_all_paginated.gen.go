@@ -2,7 +2,7 @@ package api_key_controllers
 
 import (
 	"net/http"
-	api_key_operations "github.com/bakeable/bkry/data/entities/api_key/operations"
+	api_key_operations "github.com/bakeable/bkry/internal/server/transport/operations/api_key"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

@@ -2,7 +2,7 @@ package cloud_function_controllers
 
 import (
 	"net/http"
-	cloud_function_operations "github.com/bakeable/bkry/data/entities/cloud_function/operations"
+	cloud_function_operations "github.com/bakeable/bkry/internal/server/transport/operations/cloud_function"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

@@ -2,7 +2,7 @@ package examination_settings_controllers
 
 import (
 	"net/http"
-	examination_settings_operations "github.com/bakeable/bkry/data/entities/examination_settings/operations"
+	examination_settings_operations "github.com/bakeable/bkry/internal/server/transport/operations/examination_settings"
 
 	"github.com/gin-gonic/gin"
 )

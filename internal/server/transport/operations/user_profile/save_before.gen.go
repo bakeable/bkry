@@ -1,7 +1,7 @@
 package user_profile_operations
 
 import (
-	user_profile "github.com/bakeable/bkry/data/entities/user_profile"
+	user_profile "github.com/bakeable/bkry/internal/server/models/entities/user_profile"
 )
 
 func beforeSave(entity user_profile.UserProfile, editorID *string) user_profile.UserProfile {

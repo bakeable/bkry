@@ -1,8 +1,8 @@
 package examination_task_routes
 
 import (
-	examination_task_controllers "github.com/bakeable/bkry/api/examination_task/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	examination_task_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/examination_task"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

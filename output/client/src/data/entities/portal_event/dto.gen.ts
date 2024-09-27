@@ -42,7 +42,7 @@ export class PortalEventDto extends Dto implements IPortalEventDto {
     _kind = "PortalEvent"
     
     
-    metadata = {}
+    metadata = map[string]interface{}{}
     
     
     timestamp = 0

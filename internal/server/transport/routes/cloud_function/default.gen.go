@@ -1,8 +1,8 @@
 package cloud_function_routes
 
 import (
-	cloud_function_controllers "github.com/bakeable/bkry/api/cloud_function/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	cloud_function_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/cloud_function"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

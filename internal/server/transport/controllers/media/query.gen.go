@@ -1,7 +1,7 @@
 package media_controllers
 
 import (
-	media_operations "github.com/bakeable/bkry/data/entities/media/operations"
+	media_operations "github.com/bakeable/bkry/internal/server/transport/operations/media"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

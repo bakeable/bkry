@@ -2,8 +2,8 @@ package media_controllers
 
 import (
 	"net/http"
-	media "github.com/bakeable/bkry/data/entities/media"
-	media_operations "github.com/bakeable/bkry/data/entities/media/operations"
+	media "github.com/bakeable/bkry/internal/server/models/entities/media"
+	media_operations "github.com/bakeable/bkry/internal/server/transport/operations/media"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

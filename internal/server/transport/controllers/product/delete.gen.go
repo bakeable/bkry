@@ -2,7 +2,7 @@ package product_controllers
 
 import (
 	"net/http"
-	product_operations "github.com/bakeable/bkry/data/entities/product/operations"
+	product_operations "github.com/bakeable/bkry/internal/server/transport/operations/product"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,8 +1,8 @@
 package media_routes
 
 import (
-	media_controllers "github.com/bakeable/bkry/api/media/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	media_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/media"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

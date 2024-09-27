@@ -1,8 +1,8 @@
 package user_profile_routes
 
 import (
-	user_profile_controllers "github.com/bakeable/bkry/api/user_profile/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	user_profile_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/user_profile"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

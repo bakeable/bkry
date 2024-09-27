@@ -1,8 +1,8 @@
 package airline_settings_operations
 
 import (
-	airline_settings "github.com/bakeable/bkry/data/entities/airline_settings"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	airline_settings "github.com/bakeable/bkry/internal/server/models/entities/airline_settings"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

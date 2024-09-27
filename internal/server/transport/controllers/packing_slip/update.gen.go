@@ -2,8 +2,8 @@ package packing_slip_controllers
 
 import (
 	"net/http"
-	packing_slip "github.com/bakeable/bkry/data/entities/packing_slip"
-	packing_slip_operations "github.com/bakeable/bkry/data/entities/packing_slip/operations"
+	packing_slip "github.com/bakeable/bkry/internal/server/models/entities/packing_slip"
+	packing_slip_operations "github.com/bakeable/bkry/internal/server/transport/operations/packing_slip"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

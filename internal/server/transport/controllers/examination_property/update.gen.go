@@ -2,8 +2,8 @@ package examination_property_controllers
 
 import (
 	"net/http"
-	examination_property "github.com/bakeable/bkry/data/entities/examination_property"
-	examination_property_operations "github.com/bakeable/bkry/data/entities/examination_property/operations"
+	examination_property "github.com/bakeable/bkry/internal/server/models/entities/examination_property"
+	examination_property_operations "github.com/bakeable/bkry/internal/server/transport/operations/examination_property"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

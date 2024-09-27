@@ -1,8 +1,8 @@
 package batch_export_operations
 
 import (
-	batch_export "github.com/bakeable/bkry/data/entities/batch_export"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	batch_export "github.com/bakeable/bkry/internal/server/models/entities/batch_export"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

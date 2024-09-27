@@ -1,7 +1,7 @@
 package user_profile_controllers
 
 import (
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 
 	"github.com/gin-gonic/gin"
 )

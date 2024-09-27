@@ -1,7 +1,7 @@
 package packing_slip_controllers
 
 import (
-	packing_slip_operations "github.com/bakeable/bkry/data/entities/packing_slip/operations"
+	packing_slip_operations "github.com/bakeable/bkry/internal/server/transport/operations/packing_slip"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

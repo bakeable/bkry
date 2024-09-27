@@ -1,7 +1,7 @@
 [
     {
         "path": "config/**",
-        "output_dir": "{ServerDir}/models/{EntityName}/",
+        "output_dir": "{ServerDir}/models/entities/{EntityName}/",
         "data": "single_entity"
     },
     {
@@ -16,7 +16,7 @@
     },
     {
         "path": "repository/repository.go.tmpl",
-        "output_dir": "{ServerDir}/database/repository/",
+        "output_dir": "{ServerDir}/database/repository/entities/",
         "output_file": "{EntityName}.gen.go",
         "data": "single_entity"
     },
@@ -32,7 +32,9 @@
     },
     {
         "path": "api.go.tmpl",
-        "output_dir": "{ServerDir}/transport/api.gen.go",
-        "data": "all_entities"
+        "output_dir": "{ServerDir}/transport",
+        "output_file": "api.gen.go",
+        "data": "all_entities",
+        "force_write": true
     }
 ]

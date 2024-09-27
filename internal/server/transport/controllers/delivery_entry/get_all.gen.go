@@ -2,7 +2,7 @@ package delivery_entry_controllers
 
 import (
 	"net/http"
-	delivery_entry_operations "github.com/bakeable/bkry/data/entities/delivery_entry/operations"
+	delivery_entry_operations "github.com/bakeable/bkry/internal/server/transport/operations/delivery_entry"
 
 	"github.com/gin-gonic/gin"
 )

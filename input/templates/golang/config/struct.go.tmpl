@@ -5,10 +5,10 @@ import (
 {{- range .StructImports }}
 	"{{.}}"
 {{- end }}
-   "github.com/bakeable/bkry/data/general/auditinfo"
+   "github.com/bakeable/bkry/internal/server/models/general/auditinfo"
 )
 {{- else }}
-import "github.com/bakeable/bkry/data/general/auditinfo"
+import "github.com/bakeable/bkry/internal/server/models/general/auditinfo"
 {{- end }}
 
 type {{.TypeName}} struct {

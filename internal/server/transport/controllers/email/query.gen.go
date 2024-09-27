@@ -1,7 +1,7 @@
 package email_controllers
 
 import (
-	email_operations "github.com/bakeable/bkry/data/entities/email/operations"
+	email_operations "github.com/bakeable/bkry/internal/server/transport/operations/email"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

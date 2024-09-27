@@ -2,8 +2,8 @@ package {{.EntityName}}_controllers
 
 import (
 	"net/http"
-	{{.EntityName}} "github.com/bakeable/bkry/data/entities/{{.EntityName}}"
-	{{.EntityName}}_operations "github.com/bakeable/bkry/data/entities/{{.EntityName}}/operations"
+	{{.EntityName}} "github.com/bakeable/bkry/internal/server/models/entities/{{.EntityName}}"
+	{{.EntityName}}_operations "github.com/bakeable/bkry/internal/server/transport/operations/{{.EntityName}}"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

@@ -1,7 +1,7 @@
 package quotation_controllers
 
 import (
-	quotation_operations "github.com/bakeable/bkry/data/entities/quotation/operations"
+	quotation_operations "github.com/bakeable/bkry/internal/server/transport/operations/quotation"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

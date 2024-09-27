@@ -1,8 +1,8 @@
 package delivery_entry_routes
 
 import (
-	delivery_entry_controllers "github.com/bakeable/bkry/api/delivery_entry/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	delivery_entry_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/delivery_entry"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

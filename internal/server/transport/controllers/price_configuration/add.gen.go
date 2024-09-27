@@ -2,8 +2,8 @@ package price_configuration_controllers
 
 import (
 	"net/http"
-	price_configuration "github.com/bakeable/bkry/data/entities/price_configuration"
-	price_configuration_operations "github.com/bakeable/bkry/data/entities/price_configuration/operations"
+	price_configuration "github.com/bakeable/bkry/internal/server/models/entities/price_configuration"
+	price_configuration_operations "github.com/bakeable/bkry/internal/server/transport/operations/price_configuration"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

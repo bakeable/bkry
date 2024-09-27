@@ -1,8 +1,8 @@
 package email_operations
 
 import (
-	email "github.com/bakeable/bkry/data/entities/email"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	email "github.com/bakeable/bkry/internal/server/models/entities/email"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

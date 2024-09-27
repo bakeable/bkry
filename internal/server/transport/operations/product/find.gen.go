@@ -1,8 +1,8 @@
 package product_operations
 
 import (
-	product "github.com/bakeable/bkry/data/entities/product"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	product "github.com/bakeable/bkry/internal/server/models/entities/product"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

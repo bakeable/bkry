@@ -1,7 +1,7 @@
 package delivery_entry_controllers
 
 import (
-	delivery_entry_operations "github.com/bakeable/bkry/data/entities/delivery_entry/operations"
+	delivery_entry_operations "github.com/bakeable/bkry/internal/server/transport/operations/delivery_entry"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

@@ -2,8 +2,8 @@ package airline_pricing_controllers
 
 import (
 	"net/http"
-	airline_pricing "github.com/bakeable/bkry/data/entities/airline_pricing"
-	airline_pricing_operations "github.com/bakeable/bkry/data/entities/airline_pricing/operations"
+	airline_pricing "github.com/bakeable/bkry/internal/server/models/entities/airline_pricing"
+	airline_pricing_operations "github.com/bakeable/bkry/internal/server/transport/operations/airline_pricing"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

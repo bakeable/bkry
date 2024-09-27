@@ -1,0 +1,68 @@
+{
+  "excludedEndpoints": null,
+  "fields": [
+    {
+      "fieldName": "Kind",
+      "fieldType": "string",
+      "isArray": false,
+      "isChildStruct": false,
+      "isEnum": false,
+      "isLocalizable": false,
+      "jsonName": "_kind",
+      "defaultValue": "ApiKey",
+      "fields": null,
+      "description": "The kind of the object",
+      "isRequired": false,
+      "isFixedAcrossLocalisations": false,
+      "arrayMatchOn": ""
+    },
+    {
+      "fieldName": "publicKey",
+      "fieldType": "string",
+      "isArray": false,
+      "isChildStruct": false,
+      "isEnum": false,
+      "isLocalizable": false,
+      "jsonName": "publicKey",
+      "defaultValue": "",
+      "fields": null,
+      "description": "The public key",
+      "isRequired": false,
+      "isFixedAcrossLocalisations": false,
+      "arrayMatchOn": ""
+    },
+    {
+      "fieldName": "secretKey",
+      "fieldType": "string",
+      "isArray": false,
+      "isChildStruct": false,
+      "isEnum": false,
+      "isLocalizable": false,
+      "jsonName": "secretKey",
+      "defaultValue": "",
+      "fields": null,
+      "description": "The secret key",
+      "isRequired": false,
+      "isFixedAcrossLocalisations": false,
+      "arrayMatchOn": ""
+    },
+    {
+      "fieldName": "userId",
+      "fieldType": "string",
+      "isArray": false,
+      "isChildStruct": false,
+      "isEnum": false,
+      "isLocalizable": false,
+      "jsonName": "userId",
+      "defaultValue": "",
+      "fields": null,
+      "description": "The user ID",
+      "isRequired": false,
+      "isFixedAcrossLocalisations": false,
+      "arrayMatchOn": ""
+    }
+  ],
+  "isLocalizable": false,
+  "parents": null,
+  "typeName": "ApiKey"
+}

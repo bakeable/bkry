@@ -1,7 +1,7 @@
 package airline_settings_controllers
 
 import (
-	airline_settings_operations "github.com/bakeable/bkry/data/entities/airline_settings/operations"
+	airline_settings_operations "github.com/bakeable/bkry/internal/server/transport/operations/airline_settings"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

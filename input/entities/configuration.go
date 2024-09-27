@@ -1,7 +1,7 @@
 package entities
 
-func GetMetaData() []MetaData {
-	return []MetaData{
+func GetEntityConfigurations() []EntityConfig {
+	return []EntityConfig{
 		{
 			TypeName: "UserProfile",
 			Fields: userProfileFields,

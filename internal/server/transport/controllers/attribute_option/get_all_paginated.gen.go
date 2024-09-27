@@ -2,7 +2,7 @@ package attribute_option_controllers
 
 import (
 	"net/http"
-	attribute_option_operations "github.com/bakeable/bkry/data/entities/attribute_option/operations"
+	attribute_option_operations "github.com/bakeable/bkry/internal/server/transport/operations/attribute_option"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

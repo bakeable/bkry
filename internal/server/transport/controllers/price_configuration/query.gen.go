@@ -1,7 +1,7 @@
 package price_configuration_controllers
 
 import (
-	price_configuration_operations "github.com/bakeable/bkry/data/entities/price_configuration/operations"
+	price_configuration_operations "github.com/bakeable/bkry/internal/server/transport/operations/price_configuration"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

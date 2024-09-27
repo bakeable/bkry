@@ -1,8 +1,8 @@
 package quotation_operations
 
 import (
-	quotation "github.com/bakeable/bkry/data/entities/quotation"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	quotation "github.com/bakeable/bkry/internal/server/models/entities/quotation"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

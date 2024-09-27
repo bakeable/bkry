@@ -2,7 +2,7 @@ package printing_order_supplier_controllers
 
 import (
 	"net/http"
-	printing_order_supplier_operations "github.com/bakeable/bkry/data/entities/printing_order_supplier/operations"
+	printing_order_supplier_operations "github.com/bakeable/bkry/internal/server/transport/operations/printing_order_supplier"
 
 	"github.com/gin-gonic/gin"
 )

@@ -2,7 +2,7 @@ package attribute_controllers
 
 import (
 	"net/http"
-	attribute_operations "github.com/bakeable/bkry/data/entities/attribute/operations"
+	attribute_operations "github.com/bakeable/bkry/internal/server/transport/operations/attribute"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

@@ -1,8 +1,8 @@
 package examination_property_routes
 
 import (
-	examination_property_controllers "github.com/bakeable/bkry/api/examination_property/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	examination_property_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/examination_property"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

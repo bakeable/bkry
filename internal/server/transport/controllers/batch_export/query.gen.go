@@ -1,7 +1,7 @@
 package batch_export_controllers
 
 import (
-	batch_export_operations "github.com/bakeable/bkry/data/entities/batch_export/operations"
+	batch_export_operations "github.com/bakeable/bkry/internal/server/transport/operations/batch_export"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

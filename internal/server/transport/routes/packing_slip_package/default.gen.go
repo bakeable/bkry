@@ -1,8 +1,8 @@
 package packing_slip_package_routes
 
 import (
-	packing_slip_package_controllers "github.com/bakeable/bkry/api/packing_slip_package/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	packing_slip_package_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/packing_slip_package"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

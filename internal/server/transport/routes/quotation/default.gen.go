@@ -1,8 +1,8 @@
 package quotation_routes
 
 import (
-	quotation_controllers "github.com/bakeable/bkry/api/quotation/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	quotation_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/quotation"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

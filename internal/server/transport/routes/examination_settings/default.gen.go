@@ -1,8 +1,8 @@
 package examination_settings_routes
 
 import (
-	examination_settings_controllers "github.com/bakeable/bkry/api/examination_settings/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	examination_settings_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/examination_settings"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

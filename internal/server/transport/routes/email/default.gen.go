@@ -1,8 +1,8 @@
 package email_routes
 
 import (
-	email_controllers "github.com/bakeable/bkry/api/email/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	email_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/email"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,8 +1,8 @@
 package packing_slip_package_operations
 
 import (
-	packing_slip_package "github.com/bakeable/bkry/data/entities/packing_slip_package"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	packing_slip_package "github.com/bakeable/bkry/internal/server/models/entities/packing_slip_package"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

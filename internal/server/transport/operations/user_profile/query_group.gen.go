@@ -1,8 +1,8 @@
 package user_profile_operations
 
 import (
-	user_profile "github.com/bakeable/bkry/data/entities/user_profile"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	user_profile "github.com/bakeable/bkry/internal/server/models/entities/user_profile"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

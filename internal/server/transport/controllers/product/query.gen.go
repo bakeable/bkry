@@ -1,7 +1,7 @@
 package product_controllers
 
 import (
-	product_operations "github.com/bakeable/bkry/data/entities/product/operations"
+	product_operations "github.com/bakeable/bkry/internal/server/transport/operations/product"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

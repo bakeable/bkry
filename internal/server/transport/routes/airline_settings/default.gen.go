@@ -1,8 +1,8 @@
 package airline_settings_routes
 
 import (
-	airline_settings_controllers "github.com/bakeable/bkry/api/airline_settings/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	airline_settings_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/airline_settings"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

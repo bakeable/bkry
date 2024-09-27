@@ -1,8 +1,8 @@
 package user_routes
 
 import (
-	user_controllers "github.com/bakeable/bkry/api/user/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	user_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/user"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

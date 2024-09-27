@@ -2,7 +2,7 @@ package user_controllers
 
 import (
 	"net/http"
-	user_operations "github.com/bakeable/bkry/data/entities/user/operations"
+	user_operations "github.com/bakeable/bkry/internal/server/transport/operations/user"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

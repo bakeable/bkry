@@ -2,7 +2,7 @@ package user_profile_controllers
 
 import (
 	"net/http"
-	user_profile_operations "github.com/bakeable/bkry/data/entities/user_profile/operations"
+	user_profile_operations "github.com/bakeable/bkry/internal/server/transport/operations/user_profile"
 	"strconv"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	

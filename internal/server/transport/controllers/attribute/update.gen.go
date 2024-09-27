@@ -2,8 +2,8 @@ package attribute_controllers
 
 import (
 	"net/http"
-	attribute "github.com/bakeable/bkry/data/entities/attribute"
-	attribute_operations "github.com/bakeable/bkry/data/entities/attribute/operations"
+	attribute "github.com/bakeable/bkry/internal/server/models/entities/attribute"
+	attribute_operations "github.com/bakeable/bkry/internal/server/transport/operations/attribute"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

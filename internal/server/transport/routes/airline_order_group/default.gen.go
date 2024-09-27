@@ -1,8 +1,8 @@
 package airline_order_group_routes
 
 import (
-	airline_order_group_controllers "github.com/bakeable/bkry/api/airline_order_group/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	airline_order_group_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/airline_order_group"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

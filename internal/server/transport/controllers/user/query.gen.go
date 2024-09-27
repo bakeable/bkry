@@ -1,7 +1,7 @@
 package user_controllers
 
 import (
-	user_operations "github.com/bakeable/bkry/data/entities/user/operations"
+	user_operations "github.com/bakeable/bkry/internal/server/transport/operations/user"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

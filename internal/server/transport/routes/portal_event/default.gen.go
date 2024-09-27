@@ -1,8 +1,8 @@
 package portal_event_routes
 
 import (
-	portal_event_controllers "github.com/bakeable/bkry/api/portal_event/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	portal_event_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/portal_event"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

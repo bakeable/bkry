@@ -1,8 +1,8 @@
 package price_layer_operations
 
 import (
-	price_layer "github.com/bakeable/bkry/data/entities/price_layer"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	price_layer "github.com/bakeable/bkry/internal/server/models/entities/price_layer"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

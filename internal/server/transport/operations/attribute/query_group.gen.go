@@ -1,8 +1,8 @@
 package attribute_operations
 
 import (
-	attribute "github.com/bakeable/bkry/data/entities/attribute"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	attribute "github.com/bakeable/bkry/internal/server/models/entities/attribute"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

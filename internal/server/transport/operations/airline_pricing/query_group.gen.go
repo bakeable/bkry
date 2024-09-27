@@ -1,8 +1,8 @@
 package airline_pricing_operations
 
 import (
-	airline_pricing "github.com/bakeable/bkry/data/entities/airline_pricing"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	airline_pricing "github.com/bakeable/bkry/internal/server/models/entities/airline_pricing"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

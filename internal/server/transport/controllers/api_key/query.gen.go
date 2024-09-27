@@ -1,7 +1,7 @@
 package api_key_controllers
 
 import (
-	api_key_operations "github.com/bakeable/bkry/data/entities/api_key/operations"
+	api_key_operations "github.com/bakeable/bkry/internal/server/transport/operations/api_key"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

@@ -2,8 +2,8 @@ package airline_settings_controllers
 
 import (
 	"net/http"
-	airline_settings "github.com/bakeable/bkry/data/entities/airline_settings"
-	airline_settings_operations "github.com/bakeable/bkry/data/entities/airline_settings/operations"
+	airline_settings "github.com/bakeable/bkry/internal/server/models/entities/airline_settings"
+	airline_settings_operations "github.com/bakeable/bkry/internal/server/transport/operations/airline_settings"
 	"github.com/bakeable/bkry/tools"
 
 	"github.com/gin-gonic/gin"

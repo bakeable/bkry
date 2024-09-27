@@ -1,8 +1,8 @@
 package api_key_operations
 
 import (
-	api_key "github.com/bakeable/bkry/data/entities/api_key"
-	repo "github.com/bakeable/bkry/data/repository/entities"
+	api_key "github.com/bakeable/bkry/internal/server/models/entities/api_key"
+	repo "github.com/bakeable/bkry/internal/server/database/repository"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"	
 	
 )

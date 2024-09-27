@@ -1,7 +1,7 @@
 package printing_order_supplier_controllers
 
 import (
-	printing_order_supplier_operations "github.com/bakeable/bkry/data/entities/printing_order_supplier/operations"
+	printing_order_supplier_operations "github.com/bakeable/bkry/internal/server/transport/operations/printing_order_supplier"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

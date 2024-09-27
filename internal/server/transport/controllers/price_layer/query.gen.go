@@ -1,7 +1,7 @@
 package price_layer_controllers
 
 import (
-	price_layer_operations "github.com/bakeable/bkry/data/entities/price_layer/operations"
+	price_layer_operations "github.com/bakeable/bkry/internal/server/transport/operations/price_layer"
 	"github.com/bakeable/bkry/third_party/gcloud/datastore"
 	"github.com/bakeable/bkry/tools"
 	"fmt"

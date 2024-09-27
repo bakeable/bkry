@@ -1,8 +1,8 @@
 package api_key_routes
 
 import (
-	api_key_controllers "github.com/bakeable/bkry/api/api_key/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	api_key_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/api_key"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )

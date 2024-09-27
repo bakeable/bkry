@@ -1,8 +1,8 @@
 package attribute_option_routes
 
 import (
-	attribute_option_controllers "github.com/bakeable/bkry/api/attribute_option/controllers"
-	"github.com/bakeable/bkry/api/middleware"
+	attribute_option_controllers "github.com/bakeable/bkry/internal/server/transport/controllers/attribute_option"
+	"github.com/bakeable/bkry/internal/server/transport/middleware"
 
 	"github.com/gin-gonic/gin"
 )
