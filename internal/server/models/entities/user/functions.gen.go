@@ -21,7 +21,7 @@ func (e User) Get(id string) (User, error) {
 // Update updates a User in the database
 func Update(e User) error {
     // Convert the User to an entity
-    entity := Encode(e)
+    entity := ToMap(e)
 
     // Update the entity in the database
     _, err := datastore.UpdateEntityById("User", e.ID, entity, nil)

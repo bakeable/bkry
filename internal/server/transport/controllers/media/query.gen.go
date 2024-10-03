@@ -2,7 +2,7 @@ package media_controllers
 
 import (
 	media_operations "github.com/bakeable/bkry/internal/server/transport/operations/media"
-	"github.com/bakeable/bkry/third_party/gcloud/datastore"
+	"github.com/bakeable/bkry/internal/server/database"
 	"github.com/bakeable/bkry/tools"
 	"fmt"
 	"net/http"
@@ -15,8 +15,8 @@ import (
 //// THIS WAY, IT WON'T BE OVERWRITTEN AND THERE WON'T BE A CONTROLLER GENERATED
 
 type QueryBody struct {
-	Queries    []datastore.Query    `json:"queries"`
-	Pagination datastore.Pagination `json:"pagination"`
+	Queries    []database.Query    `json:"queries"`
+	Pagination database.Pagination `json:"pagination"`
 }
 
 func Query(c *gin.Context) {
@@ -33,7 +33,7 @@ func Query(c *gin.Context) {
 	}()
 
 
-	// Parse queries and format as []datastore.Query{}
+	// Parse queries and format as []database.Query{}
 	var queryBody QueryBody
 	if err := c.ShouldBindJSON(&queryBody); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

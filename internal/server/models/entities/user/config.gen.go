@@ -6,7 +6,7 @@ import (
 
 //// THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
 
-var collectionPath = "User"
+var collectionPath = "users"
 func GetCollectionPath() string {
 	output := collectionPath
 	return output
@@ -16,7 +16,7 @@ func (entity User) GetCollectionPath() string {
 	return GetCollectionPath()
 }
 
-var documentPath = "User/[userID]"
+var documentPath = "users/[userID]"
 func GetDocumentPath(userID string) string {
 	output := documentPath
 	output = strings.Replace(output, "[userID]", userID, -1)
@@ -27,8 +27,8 @@ func (entity User) GetDocumentPath() string {
     return GetDocumentPath( entity.ID)
 }
 
-func (entity User) Encode() map[string]interface{} {
-	return Encode(entity)
+func (entity User) ToMap() map[string]interface{} {
+	return ToMap(entity)
 }
 
 func (entity User) GetID() string {

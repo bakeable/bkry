@@ -1,7 +1,7 @@
 package user_controllers
 
 import (
-	repo "github.com/bakeable/bkry/internal/server/database/repository"
+	repo "github.com/bakeable/bkry/internal/server/database/repository/entities"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,7 +18,6 @@ type IControllers interface {
 	GetAllPaginated(c *gin.Context)
 	Query(c *gin.Context)
 	Update(c *gin.Context)
-	Delete(c *gin.Context)
 }
 
 // Create the controllers struct
@@ -45,9 +44,6 @@ func (Controllers) Query(c *gin.Context) {
 }
 func (Controllers) Update(c *gin.Context) {
 	Update(c)
-}
-func (Controllers) Delete(c *gin.Context) {
-	Delete(c)
 }
 
 

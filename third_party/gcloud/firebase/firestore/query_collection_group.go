@@ -1,16 +1,18 @@
-package db
+package firestore
 
 import (
 	"context"
+
+	"github.com/bakeable/bkry/internal/server/database"
 )
 
-func QueryCollectionGroup(collectionPath string, queries []Query) ([]map[string]interface{}, error) {
+func QueryCollectionGroup(collectionPath string, queries []database.Query) ([]map[string]interface{}, error) {
 	// Query documents by fields
-	query := firestoreClient.CollectionGroup(collectionPath).Where(queries[0].Field, queries[0].Operator, queries[0].Value)
+	query := firestoreClient.CollectionGroup(collectionPath).Where(queries[0].Field, string(queries[0].Operator), queries[0].Value)
 
 	// Build query
 	for i := 1; i < len(queries); i++ {
-		query = query.Where(queries[i].Field, queries[i].Operator, queries[i].Value)
+		query = query.Where(queries[i].Field, string(queries[i].Operator), queries[i].Value)
 	}
 
 	// Perform query

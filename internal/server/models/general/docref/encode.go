@@ -1,5 +1,5 @@
 package docref
 
-func (x DocRef) Encode() string {
+func (x DocRef) ToMap() string {
 	return string(x)
 }

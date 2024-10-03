@@ -1,7 +1,7 @@
 package media
+type ContentType string
 const (
-    _ContentType_Image ContentType = "image"
-    _ContentType_Video ContentType = "video"
-    _ContentType_Audio ContentType = "audio"
-    _ContentType_File ContentType = "file"
+    ContentType_Image ContentType = "Image"
+    ContentType_Video ContentType = "Video"
+    ContentType_Audio ContentType = "Audio"
 )

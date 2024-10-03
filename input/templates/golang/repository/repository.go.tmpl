@@ -3,13 +3,13 @@ package repo
 import (
 	"github.com/bakeable/bkry/internal/server/models/entities/{{.PackagePath}}"
 	"github.com/bakeable/bkry/internal/server/database/repository"
-	"github.com/bakeable/bkry/third_party/gcloud/datastore"
+	"github.com/bakeable/bkry/internal/server/database"
 	
 )
 
 //// THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
 
-var {{.TypeName}}Repo = repository.NewRepository[*{{.EntityName}}.{{.TypeName}}]()
+var {{.TypeName}}Repo = repository.NewFirestoreRepository[*{{.EntityName}}.{{.TypeName}}]()
 
 // Get{{.TypeName}} retrieves a single {{.TypeName}} entity by its ID and {{.VarName}}.
 func Get{{.TypeName}}({{range .Parents}}{{.}}ID string, {{end}}{{.VarName}} string) ({{.EntityName}}.{{.TypeName}}, error) {
@@ -33,7 +33,7 @@ func Get{{.TypeName}}ByPath(path string) ({{.EntityName}}.{{.TypeName}}, error) 
 }
 
 // Find{{.TypeName}} retrieves a {{.TypeName}} entity according to given queries.
-func Find{{.TypeName}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []datastore.Query) ({{.EntityName}}.{{.TypeName}}, error) {
+func Find{{.TypeName}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query) ({{.EntityName}}.{{.TypeName}}, error) {
 	entityMap, err := {{.TypeName}}Repo.Find({{.EntityName}}.GetCollectionPath({{.ParentVars}}), queries)
 	if err != nil || entityMap == nil {
 		return {{.EntityName}}.{{.TypeName}}{}, err
@@ -52,7 +52,7 @@ func GetAll{{.TypeNamePlural}}({{.ParentParams}}) ([]{{.EntityName}}.{{.TypeName
 
 
 // GetAll{{.TypeNamePlural}}Paginated retrieves all {{.TypeName}} entities in a paginated manner.
-func GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination datastore.Pagination) ([]{{.EntityName}}.{{.TypeName}}, datastore.Pagination, error) {
+func GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, database.Pagination, error) {
 	entityMaps, pagination, err := {{.TypeName}}Repo.ReadPaginated({{.EntityName}}.GetCollectionPath({{.ParentVars}}), pagination)
 	if err != nil {
 		return []{{.EntityName}}.{{.TypeName}}{}, pagination, err
@@ -61,7 +61,7 @@ func GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.Parent
 }
 
 // Query{{.TypeNamePlural}} retrieves all {{.TypeName}} entities according to given queries.
-func Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []datastore.Query, pagination datastore.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error) {
+func Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error) {
 	entityMaps, err := {{.TypeName}}Repo.Query({{.EntityName}}.GetCollectionPath({{.ParentVars}}), queries, pagination)
 	if err != nil {
 		return []{{.EntityName}}.{{.TypeName}}{}, err
@@ -70,7 +70,7 @@ func Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, 
 }
 
 // Query{{.TypeNamePlural}}Group retrieves all {{.TypeName}} entities according to given queries.
-func Query{{.TypeNamePlural}}Group(queries []datastore.Query) ([]{{.EntityName}}.{{.TypeName}}, error) {
+func Query{{.TypeNamePlural}}Group(queries []database.Query) ([]{{.EntityName}}.{{.TypeName}}, error) {
 	entityMaps, err := {{.TypeName}}Repo.QueryGroup("{{.EntityNamePlural}}", queries)
 	if err != nil {
 		return []{{.EntityName}}.{{.TypeName}}{}, err

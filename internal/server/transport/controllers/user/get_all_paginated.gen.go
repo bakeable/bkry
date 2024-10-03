@@ -4,7 +4,7 @@ import (
 	"net/http"
 	user_operations "github.com/bakeable/bkry/internal/server/transport/operations/user"
 	"strconv"
-	"github.com/bakeable/bkry/third_party/gcloud/datastore"
+	"github.com/bakeable/bkry/internal/server/database"
 	
 
 	"github.com/gin-gonic/gin"
@@ -42,7 +42,7 @@ func GetAllPaginated(c *gin.Context) {
 	ascending := c.DefaultQuery("asc", "true") == "true"
 
 	// Get user
-	entities, pagination := user_operations.GetAllPaginated(getRepository(), datastore.Pagination{
+	entities, pagination := user_operations.GetAllPaginated(getRepository(), database.Pagination{
 		PageSize:    pageSize,
 		PageNumber:  pageNumber,
 		OrderBy:     orderBy,

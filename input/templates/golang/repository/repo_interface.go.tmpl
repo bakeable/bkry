@@ -1,7 +1,7 @@
 package repo
 
 import (
-	"github.com/bakeable/bkry/third_party/gcloud/datastore"
+	"github.com/bakeable/bkry/internal/server/database"
 {{- range .}}
 	"github.com/bakeable/bkry/internal/server/models/entities/{{.PackagePath}}"
 {{- end}}
@@ -19,15 +19,15 @@ type IRepository interface {
 	// Get{{.TypeName}} retrieves a single {{.TypeName}} entity by its document path.
 	Get{{.TypeName}}ByPath(path string) ({{.EntityName}}.{{.TypeName}}, error)
 	// Find{{.TypeName}} retrieves a {{.TypeName}} entity according to given queries.
-	Find{{.TypeName}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []datastore.Query) ({{.EntityName}}.{{.TypeName}}, error)
+	Find{{.TypeName}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query) ({{.EntityName}}.{{.TypeName}}, error)
 	// GetAll{{.TypeNamePlural}} retrieves all {{.TypeName}} entities.
 	GetAll{{.TypeNamePlural}}({{.ParentParams}}) ([]{{.EntityName}}.{{.TypeName}}, error)
 	// GetAll{{.TypeNamePlural}}Paginated retrieves all {{.TypeName}} entities in a paginated manner.
-	GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination datastore.Pagination) ([]{{.EntityName}}.{{.TypeName}}, datastore.Pagination, error)
+	GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, database.Pagination, error)
 	// Query{{.TypeNamePlural}} retrieves all {{.TypeName}} entities according to given queries.
-	Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []datastore.Query, pagination datastore.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error)
+	Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error)
 	// Query{{.TypeNamePlural}}Group retrieves all {{.TypeName}} entities according to given queries.
-	Query{{.TypeNamePlural}}Group(queries []datastore.Query) ([]{{.EntityName}}.{{.TypeName}}, error)
+	Query{{.TypeNamePlural}}Group(queries []database.Query) ([]{{.EntityName}}.{{.TypeName}}, error)
 	// Create{{.TypeName}} creates a new {{.TypeName}} entity.
 	Create{{.TypeName}}({{range .ParentsCamelCase}}{{.}}ID string, {{end}}entity {{.EntityName}}.{{.TypeName}}, editorID *string) (string, error)
 	// Update{{.TypeName}} updates an existing {{.TypeName}} entity.
@@ -55,19 +55,19 @@ func (Repository) Get{{.TypeName}}OrNew({{range .ParentsCamelCase}}{{.}}ID strin
 func (Repository) Get{{.TypeName}}ByPath(path string) ({{.EntityName}}.{{.TypeName}}, error) {
 	return Get{{.TypeName}}ByPath(path)
 }
-func (Repository) Find{{.TypeName}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []datastore.Query) ({{.EntityName}}.{{.TypeName}}, error) {
+func (Repository) Find{{.TypeName}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query) ({{.EntityName}}.{{.TypeName}}, error) {
 	return Find{{.TypeName}}({{.ParentVars}}{{if gt (len .ParentVars) 0}}, {{end}}queries)
 }
 func (Repository) GetAll{{.TypeNamePlural}}({{.ParentParams}}) ([]{{.EntityName}}.{{.TypeName}}, error) {
 	return GetAll{{.TypeNamePlural}}({{.ParentVars}})
 }
-func (Repository) GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination datastore.Pagination) ([]{{.EntityName}}.{{.TypeName}}, datastore.Pagination, error) {
+func (Repository) GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, database.Pagination, error) {
 	return GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentVars) 0}}{{.ParentVars}}, {{end}}pagination)
 }
-func (Repository) Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []datastore.Query, pagination datastore.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error) {
+func (Repository) Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error) {
 	return Query{{.TypeNamePlural}}({{.ParentVars}}{{if gt (len .ParentVars) 0}}, {{end}}queries, pagination)
 }
-func (Repository) Query{{.TypeNamePlural}}Group(queries []datastore.Query) ([]{{.EntityName}}.{{.TypeName}}, error) {
+func (Repository) Query{{.TypeNamePlural}}Group(queries []database.Query) ([]{{.EntityName}}.{{.TypeName}}, error) {
 	return Query{{.TypeNamePlural}}Group(queries)
 }
 func (Repository) Create{{.TypeName}}({{range .ParentsCamelCase}}{{.}}ID string, {{end}}entity {{.EntityName}}.{{.TypeName}}, editorID *string) (string, error) {

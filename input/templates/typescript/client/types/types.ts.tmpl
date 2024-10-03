@@ -1,14 +1,14 @@
 import { type EntityName, type EntityTypeName } from './types.gen.d';
 
-export const entityCollectionNameToEntityName: Record<string, EntityName> = Object.freeze({
+export const entityCollectionNameToEntityName = Object.freeze({
 {{- range .Entities}}
   {{.CollectionName}}: '{{.EntityName}}',
 {{- end}}
 })
 
-export const entityNameToTypeName: Record<EntityName, EntityTypeName> = Object.freeze({
+export const entityNameToTypeName = Object.freeze({
 {{- range .Entities}}
-  {{.EntityName}}: '{{.TypeName}}',
+  {{.EntityName}}: '{{.TypeName}}' as EntityTypeName,
 {{- end}}
 })
 

@@ -1,4 +1,4 @@
-package db
+package firestore
 
 import (
 	"context"
@@ -10,18 +10,7 @@ import (
 
 func UpdateDocument(path string, data map[string]interface{}, userId *string) error {
 	// Set timestamps
-	data["updated"] = firestore.ServerTimestamp
-	
-
-	// Set id
-	if userId == nil {
-		data["updated_by"] = "system"
-		data["created_by"] = "system"
-	} else {
-		data["updated_by"] = *userId
-		data["created_by"] = *userId
-	}
-
+	data["modified"] = audit(userId)
 
 	_, err := firestoreClient.Doc(path).Set(context.Background(), data, firestore.MergeAll)
 	if err != nil {

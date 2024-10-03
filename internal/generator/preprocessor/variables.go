@@ -1,0 +1,28 @@
+package preprocessor
+
+var forbiddenDeclarators = []string{
+	"package",
+	"var",
+	"import",
+	"const",
+	"func",
+	"return",
+	"break",
+	"continue",
+	"goto",
+	"fallthrough",
+	"defer",
+	"if",
+	"else",
+	"switch",
+	"case",
+	"default",
+	"select",
+	"for",
+	"range",
+	"type",
+	"struct",
+	"interface",
+	"chan",
+	"map",
+}

@@ -36,6 +36,7 @@ func build(templateFile TemplateFile, data interface{}) {
 	tmpl := template.Must(template.New(nonGeneratedFileName + ".tmpl").Funcs(template.FuncMap{
 		"notIn": notIn,
 		"alreadyGenerated": alreadyGenerated,
+		"hasItems": hasItems,
 	}).ParseFiles(filepath.Join(templateDir, nonGeneratedFileName) + ".tmpl"))
 
 	// If an output file name is specified, use that

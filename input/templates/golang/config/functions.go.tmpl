@@ -21,7 +21,7 @@ func (e {{.TypeName}}) Get(id string) ({{.TypeName}}, error) {
 // Update updates a {{.TypeName}} in the database
 func Update(e {{.TypeName}}) error {
     // Convert the {{.TypeName}} to an entity
-    entity := Encode(e)
+    entity := ToMap(e)
 
     // Update the entity in the database
     _, err := datastore.UpdateEntityById("{{.TypeName}}", e.ID, entity, nil)

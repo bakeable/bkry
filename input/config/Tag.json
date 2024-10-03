@@ -1,0 +1,54 @@
+{
+  "excludedEndpoints": null,
+  "fields": [
+    {
+      "fieldName": "LanguageID",
+      "fieldType": "string",
+      "isArray": false,
+      "isChildStruct": false,
+      "isEnum": false,
+      "isLocalizable": true,
+      "jsonName": "language_id",
+      "defaultValue": "nl-NL",
+      "fields": null,
+      "description": "The default language code for the tag",
+      "isRequired": false,
+      "isFixedAcrossLocalisations": false,
+      "arrayMatchOn": ""
+    },
+    {
+      "fieldName": "Label",
+      "fieldType": "string",
+      "isArray": false,
+      "isChildStruct": false,
+      "isEnum": false,
+      "isLocalizable": true,
+      "jsonName": "label",
+      "defaultValue": "",
+      "fields": null,
+      "description": "The label of the tag",
+      "isRequired": false,
+      "isFixedAcrossLocalisations": false,
+      "arrayMatchOn": ""
+    },
+    {
+      "fieldName": "LanguageIds",
+      "fieldType": "[]string",
+      "isArray": false,
+      "isChildStruct": false,
+      "isEnum": false,
+      "isLocalizable": false,
+      "jsonName": "language_ids",
+      "defaultValue": "",
+      "fields": null,
+      "description": "A list of language id's in which the question bundle is available",
+      "isRequired": false,
+      "isFixedAcrossLocalisations": false,
+      "arrayMatchOn": ""
+    }
+  ],
+  "isLocalizable": true,
+  "parents": null,
+  "typeName": "Tag",
+  "entityName": "tag"
+}

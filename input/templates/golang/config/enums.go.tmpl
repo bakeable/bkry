@@ -1,11 +1,15 @@
 package {{.EntityName}}
 
-{{- if .EnumsExists }}
+{{- range .EnumValuesByType }}
+type {{.EnumType}} string
+{{- end }}
+
+{{- if hasItems .Enums }}
 const (
 {{- end }}
     {{- range .Enums }}
     {{.EnumName}} {{.EnumType}} = "{{.EnumValue}}"
     {{- end }}
-{{- if .EnumsExists }}
+{{- if hasItems .Enums }}
 )
 {{- end }}

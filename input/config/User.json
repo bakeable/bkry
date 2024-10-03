@@ -1,5 +1,7 @@
 {
-  "excludedEndpoints": null,
+  "excludedEndpoints": [
+    "delete"
+  ],
   "fields": [
     {
       "fieldName": "Email",
@@ -325,16 +327,16 @@
       "arrayMatchOn": ""
     },
     {
-      "fieldName": "Avatar",
-      "fieldType": "media.Media",
+      "fieldName": "AvatarMedia",
+      "fieldType": "docref.DocRef",
       "isArray": false,
       "isChildStruct": false,
       "isEnum": false,
       "isLocalizable": false,
-      "jsonName": "avatar",
+      "jsonName": "avatar_media",
       "defaultValue": "",
       "fields": null,
-      "description": "A user's avatar",
+      "description": "Reference to the user's avatar media",
       "isRequired": false,
       "isFixedAcrossLocalisations": false,
       "arrayMatchOn": ""
@@ -372,5 +374,6 @@
   ],
   "isLocalizable": false,
   "parents": null,
-  "typeName": "User"
+  "typeName": "User",
+  "entityName": "user"
 }

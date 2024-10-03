@@ -1,49 +1,32 @@
 package media
 
-import (
-	"github.com/bakeable/bkry/tools"
-	"github.com/bakeable/bkry/internal/server/models/general/auditinfo"
-)
+import "encoding/json"
 
 // Decode converts a map to Media struct
 func Decode(m interface{}) Media {
-	if m, ok := m.(map[string]interface{}); ok {
-		return Media{
-			ID: utils.TryDecodeString(m["id"]),
-			Created: auditinfo.Decode(m["created"]),
-			Modified: auditinfo.Decode(m["modified"]),
-			ContentType: ContentType(utils.DecodeString(m["contentType"], "Image")),
-			Description: utils.DecodeString(m["description"], ""),
-			Extension: utils.DecodeString(m["extension"], ""),
-			Filename: utils.DecodeString(m["filename"], ""),
-			MimeType: utils.DecodeString(m["mimeType"], ""),
-			Size: utils.DecodeString(m["size"], ""),
-			StoragePath: utils.DecodeString(m["storagePath"], ""),
-			Url: utils.DecodeString(m["url"], ""),
-		}
+	var entity Media
+	data, err := json.Marshal(m)
+	if err != nil {
+		return entity
 	}
-
-	return Media{}
+	json.Unmarshal(data, &entity)
+	return entity
 }
 
-// DecodeAll converts a slice of maps to a slice of Media struct
+// DecodeJSON converts a JSON string to Media struct
+func DecodeJSON(s string) Media {
+	var entity Media
+	json.Unmarshal([]byte(s), &entity)
+	return entity
+}
+
+// DecodeAll converts a slice of interfaces to a slice of Media struct
 func DecodeAll(ms interface{}) []Media {
 	var entities []Media
-
-	if arr, ok := ms.([]map[string]interface{}); ok {
-		for _, m := range arr {
-			entities = append(entities, Decode(m))
-		}
+	data, err := json.Marshal(ms)
+	if err != nil {
 		return entities
 	}
-
-	if arr, ok := ms.([]interface{}); ok {
-		for _, m := range arr {
-			entities = append(entities, Decode(m))
-		}
-		return entities
-	}
-
+	json.Unmarshal(data, &entities)
 	return entities
 }
-

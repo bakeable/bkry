@@ -21,7 +21,7 @@ func (e Media) Get(id string) (Media, error) {
 // Update updates a Media in the database
 func Update(e Media) error {
     // Convert the Media to an entity
-    entity := Encode(e)
+    entity := ToMap(e)
 
     // Update the entity in the database
     _, err := datastore.UpdateEntityById("Media", e.ID, entity, nil)

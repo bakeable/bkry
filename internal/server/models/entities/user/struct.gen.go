@@ -1,14 +1,20 @@
 package user
-import "github.com/bakeable/bkry/internal/server/models/general/auditinfo"
+import (
+	"github.com/bakeable/bkry/internal/server/models/general/docref"
+   "github.com/bakeable/bkry/internal/server/models/general/auditinfo"
+)
 
 type User struct {
+	// The unique identifier for the User
 	ID string `json:"id"`
+	// The audit information for the modification of the User
 	Modified auditinfo.AuditInfo `json:"modified"`
+	// The audit information for the creation of the User
 	Created auditinfo.AuditInfo `json:"created"`
 	// The address of the user
 	Address Address `json:"address"`
-	// A user's avatar
-	Avatar media.Media `json:"avatar"`
+	// Reference to the user's avatar media
+	AvatarMedia docref.DocRef `json:"avatar_media"`
 	// The actual e-mail of the user
 	Email string `json:"email"`
 	// The preferred locale settings of the user
@@ -22,6 +28,7 @@ type User struct {
 	// A nick-name for the user to use in games
 	UserName string `json:"user_name"`
 }
+
 
 
 
@@ -42,14 +49,12 @@ type Address struct {
 	Street string `json:"street"`
 }
 
-
 type Locale struct {
 	// The preferred locale extended with accent
 	Code string `json:"code"`
 	// Fallback on this locale if the preferred accent is not available
 	TwoDigitCode string `json:"two_digit_code"`
 }
-
 
 type Profile struct {
 	// The user's date of birth
@@ -67,11 +72,6 @@ type Profile struct {
 	// The user's prefix
 	Prefix string `json:"prefix"`
 }
-
-type Gender string
-
-
-
 
 
 

@@ -1,0 +1,3 @@
+package product_package_localisation_operations
+
+func afterDelete(productPackageID string, productPackageLocalisationID string) {}

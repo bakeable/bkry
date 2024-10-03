@@ -1,5 +1,6 @@
-import { {{.TypeName}} } from './entity'
-import { {{.TypeName}}List } from './list.gen'
+import { {{.TypeName}} } from './interface.gen'
 import { create{{.TypeName}}Store } from './store.gen'
+import { {{.TypeName}}Transporter } from './transport.gen'
+import { {{.TypeName}}Handler } from './handler'
 
-export { {{.TypeName}}, {{.TypeName}}List, create{{.TypeName}}Store }
+export { {{.TypeName}}, {{.TypeName}}Transporter, {{.TypeName}}Handler, create{{.TypeName}}Store }

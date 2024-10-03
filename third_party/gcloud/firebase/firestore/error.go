@@ -1,15 +1,15 @@
-package db
+package firestore
 
 import (
 	"log"
 
 	"github.com/bakeable/bkry/fail"
-
+	"github.com/bakeable/bkry/internal/server/database"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
-func handleError(err error, message string, path *string, queries *[]string) error {
+func handleError(err error, _ string, path *string, queries *[]string) error {
 	switch status.Code(err) {
 	case codes.NotFound:
 		if path == nil {
@@ -29,7 +29,7 @@ func handleError(err error, message string, path *string, queries *[]string) err
 	}
 }
 
-func collectQueries(queries []Query) *[]string {
+func collectQueries(queries []database.Query) *[]string {
 	var queryStrings []string
 	for _, query := range queries {
 		queryStrings = append(queryStrings, query.ToString())

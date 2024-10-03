@@ -1,6 +1,6 @@
 package {{.EntityName}}
 
-{{- if .StructImportsNotEmpty }}
+{{- if hasItems .StructImports }}
 import (
 {{- range .StructImports }}
 	"{{.}}"
@@ -12,8 +12,11 @@ import "github.com/bakeable/bkry/internal/server/models/general/auditinfo"
 {{- end }}
 
 type {{.TypeName}} struct {
+	// The unique identifier for the {{.TypeName}}
 	ID string `json:"id"`
+	// The audit information for the modification of the {{.TypeName}}
 	Modified auditinfo.AuditInfo `json:"modified"`
+	// The audit information for the creation of the {{.TypeName}}
 	Created auditinfo.AuditInfo `json:"created"`
 	{{- range .Fields}}
 	{{- if .Description }}
@@ -24,31 +27,16 @@ type {{.TypeName}} struct {
 }
 
 
-{{template "generateChildStructs" .Fields }}
-{{- template "generateEnums" .Fields }}
+{{template "generateChildStructs" .ChildStructs }}
 
 {{define "generateChildStructs" }}
 {{- range . }}
 
-{{- if .IsChildStruct }}
 type {{.FieldType}} struct {
 	{{- range .Fields }}
 	// {{.Description}}
 	{{.FieldName}} {{if .IsArray}}[]{{end}}{{.FieldType}} `json:"{{.JsonName}}"`
 	{{- end }}
 }
-{{- template "generateChildStructs" .Fields }}
-{{- template "generateEnums" .Fields }}
-{{- end }}
-{{- end }}
-{{end }}
-
-{{define "generateEnums" }}
-{{- range . }}
-{{- if not .IsDuplicateEnum }}
-{{- if .IsEnum }}
-type {{.FieldType}} string
-{{- end }}
-{{- end }}
 {{- end }}
 {{end }}

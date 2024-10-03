@@ -3,13 +3,13 @@ package repo
 import (
 	"github.com/bakeable/bkry/internal/server/models/entities/media"
 	"github.com/bakeable/bkry/internal/server/database/repository"
-	"github.com/bakeable/bkry/third_party/gcloud/datastore"
+	"github.com/bakeable/bkry/internal/server/database"
 	
 )
 
 //// THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
 
-var MediaRepo = repository.NewRepository[*media.Media]()
+var MediaRepo = repository.NewFirestoreRepository[*media.Media]()
 
 // GetMedia retrieves a single Media entity by its ID and mediaID.
 func GetMedia(mediaID string) (media.Media, error) {
@@ -33,7 +33,7 @@ func GetMediaByPath(path string) (media.Media, error) {
 }
 
 // FindMedia retrieves a Media entity according to given queries.
-func FindMedia(queries []datastore.Query) (media.Media, error) {
+func FindMedia(queries []database.Query) (media.Media, error) {
 	entityMap, err := MediaRepo.Find(media.GetCollectionPath(), queries)
 	if err != nil || entityMap == nil {
 		return media.Media{}, err
@@ -52,7 +52,7 @@ func GetAllMedia() ([]media.Media, error) {
 
 
 // GetAllMediaPaginated retrieves all Media entities in a paginated manner.
-func GetAllMediaPaginated(pagination datastore.Pagination) ([]media.Media, datastore.Pagination, error) {
+func GetAllMediaPaginated(pagination database.Pagination) ([]media.Media, database.Pagination, error) {
 	entityMaps, pagination, err := MediaRepo.ReadPaginated(media.GetCollectionPath(), pagination)
 	if err != nil {
 		return []media.Media{}, pagination, err
@@ -61,7 +61,7 @@ func GetAllMediaPaginated(pagination datastore.Pagination) ([]media.Media, datas
 }
 
 // QueryMedia retrieves all Media entities according to given queries.
-func QueryMedia(queries []datastore.Query, pagination datastore.Pagination) ([]media.Media, error) {
+func QueryMedia(queries []database.Query, pagination database.Pagination) ([]media.Media, error) {
 	entityMaps, err := MediaRepo.Query(media.GetCollectionPath(), queries, pagination)
 	if err != nil {
 		return []media.Media{}, err
@@ -70,7 +70,7 @@ func QueryMedia(queries []datastore.Query, pagination datastore.Pagination) ([]m
 }
 
 // QueryMediaGroup retrieves all Media entities according to given queries.
-func QueryMediaGroup(queries []datastore.Query) ([]media.Media, error) {
+func QueryMediaGroup(queries []database.Query) ([]media.Media, error) {
 	entityMaps, err := MediaRepo.QueryGroup("media", queries)
 	if err != nil {
 		return []media.Media{}, err

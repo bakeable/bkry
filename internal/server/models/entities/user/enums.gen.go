@@ -1,6 +1,7 @@
 package user
+type Gender string
 const (
-    _Gender_Unknown Gender = "Unknown"
-    _Gender_Male Gender = "Male"
-    _Gender_Female Gender = "Female"
+    Gender_Unknown Gender = "Unknown"
+    Gender_Male Gender = "Male"
+    Gender_Female Gender = "Female"
 )

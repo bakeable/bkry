@@ -22,7 +22,8 @@
     },
     {
         "path": "repository/repo_interface.go.tmpl",
-        "output_dir": "{ServerDir}/database/repository/",
+        "output_dir": "{ServerDir}/database/repository/entities/",
+        "output_file": "index.gen.go",
         "data": "all_entities"
     },
     {

@@ -27,9 +27,6 @@ func InitRoutes(r *gin.RouterGroup) {
 	group.POST("", func(c *gin.Context) {
 		controllers.Add(c)
 	})
-	group.DELETE(":userID", func(c *gin.Context) {
-		controllers.Delete(c)
-	})
 	group.GET("", func(c *gin.Context) {
 		controllers.GetAllPaginated(c)
 	})

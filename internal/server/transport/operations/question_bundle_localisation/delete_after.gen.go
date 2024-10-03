@@ -1,0 +1,3 @@
+package question_bundle_localisation_operations
+
+func afterDelete(questionBundleID string, questionBundleLocalisationID string) {}

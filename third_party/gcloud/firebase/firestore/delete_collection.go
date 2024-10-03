@@ -1,42 +1,54 @@
-package db
+package firestore
 
 import (
 	"context"
+	"fmt"
 	"log"
+	"strings"
 )
 
 func DeleteCollection(path string) error {
-	// Get all documents in collection
-	docs, err := ReadDocuments(path)
+	fmt.Println("Deleting collection: " + path)
+
+	// Get documents in collection
+	docs, err := firestoreClient.Collection(path).Documents(context.Background()).GetAll()
 	if err != nil {
-		log.Printf("Failed to read documents: %v", err)
-		return err
+		return handleError(err, "Failed to read documents", &path, nil)
 	}
 
 	// Loop through documents
 	for _, doc := range docs {
-		docRef := firestoreClient.Doc(path + "/" + doc["id"].(string))
-
 		// Get subcollections of document
-		subcollections, err := docRef.Collections(context.Background()).GetAll()
+		subcollections, err := doc.Ref.Collections(context.Background()).GetAll()
 		if err != nil {
 			log.Printf("Failed to get subcollections: %v", err)
 		}
 
 		// Delete document
-		_, err = docRef.Delete(context.Background())
+		_, err = doc.Ref.Delete(context.Background())
 		if err != nil {
 			log.Printf("Failed to delete document: %v", err)
 		}
 
 		// Delete subcollections
-		for _, subcollection := range subcollections {
-			err = DeleteCollection(path + "/" + doc["id"].(string) + "/" + subcollection.ID)
-			if err != nil {
-				log.Printf("Failed to delete subcollection: %v", err)
+		if len(subcollections) > 0 && subcollections != nil {
+			for _, collection := range subcollections {
+				if collection != nil {
+					// Get the path after "/documents/"
+					parts := strings.Split(collection.Path, "/documents/")
+					if len(parts) > 1 {
+						// Get the path after "/documents/"
+						path := parts[1]
+						DeleteCollection(path)
+					}
+				}
 			}
 		}
+
 	}
+
+	// Update metadata
+	onCollectionRemoved(path)
 
 
 	return nil

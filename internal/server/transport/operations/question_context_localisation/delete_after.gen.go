@@ -1,0 +1,3 @@
+package question_context_localisation_operations
+
+func afterDelete(questionContextID string, questionContextLocalisationID string) {}

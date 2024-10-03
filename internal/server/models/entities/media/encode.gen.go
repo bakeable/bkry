@@ -1,22 +1,17 @@
 package media
 
-// Encode converts a Media struct to a map
-func Encode(e Media) map[string]interface{} {
-    result := map[string]interface{}{
-        "id": e.ID,
-        "created": e.Created.Encode(),
-        "modified": e.Modified.Encode(),
-        "contentType": e.ContentType,
-        "description": e.Description,
-        "extension": e.Extension,
-        "filename": e.Filename,
-        "mimeType": e.MimeType,
-        "size": e.Size,
-        "storagePath": e.StoragePath,
-        "url": e.Url,
-    }
-    return result
+import "encoding/json"
+
+// ToMap converts a Media struct to a map
+func ToMap(e Media) map[string]interface{} {
+    data, _ := json.Marshal(e)
+    var m map[string]interface{}
+    json.Unmarshal(data, &m)
+    return m
 }
 
-
-
+// ToJSON converts a Media struct to a JSON string
+func ToJSON(e Media) string {
+    data, _ := json.Marshal(e)
+    return string(data)
+}

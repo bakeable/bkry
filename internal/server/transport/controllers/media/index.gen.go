@@ -1,7 +1,7 @@
 package media_controllers
 
 import (
-	repo "github.com/bakeable/bkry/internal/server/database/repository"
+	repo "github.com/bakeable/bkry/internal/server/database/repository/entities"
 
 	"github.com/gin-gonic/gin"
 )

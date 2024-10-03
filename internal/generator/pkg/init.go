@@ -7,6 +7,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/bakeable/bkry/internal/generator/preprocessor"
 )
 
 var OutputDir = "/Users/robin/Github/bkry/output/"
@@ -134,8 +136,9 @@ func Run() {
 		fmt.Println(err)
 	}
 
-	// Get overview
-	overview := GetOverview()
+	// Get preprocessor 
+	p := preprocessor.NewPreprocessor("/Users/robin/Github/bkry/input/config/")
+	overview := p.GetOverview()
 	
 	for _, tmpl := range templateFiles {
 		templateFile := tmpl.DeepCopyWithVariables(map[string]string{

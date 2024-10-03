@@ -3,13 +3,13 @@ package repo
 import (
 	"github.com/bakeable/bkry/internal/server/models/entities/user"
 	"github.com/bakeable/bkry/internal/server/database/repository"
-	"github.com/bakeable/bkry/third_party/gcloud/datastore"
+	"github.com/bakeable/bkry/internal/server/database"
 	
 )
 
 //// THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
 
-var UserRepo = repository.NewRepository[*user.User]()
+var UserRepo = repository.NewFirestoreRepository[*user.User]()
 
 // GetUser retrieves a single User entity by its ID and userID.
 func GetUser(userID string) (user.User, error) {
@@ -33,7 +33,7 @@ func GetUserByPath(path string) (user.User, error) {
 }
 
 // FindUser retrieves a User entity according to given queries.
-func FindUser(queries []datastore.Query) (user.User, error) {
+func FindUser(queries []database.Query) (user.User, error) {
 	entityMap, err := UserRepo.Find(user.GetCollectionPath(), queries)
 	if err != nil || entityMap == nil {
 		return user.User{}, err
@@ -52,7 +52,7 @@ func GetAllUsers() ([]user.User, error) {
 
 
 // GetAllUsersPaginated retrieves all User entities in a paginated manner.
-func GetAllUsersPaginated(pagination datastore.Pagination) ([]user.User, datastore.Pagination, error) {
+func GetAllUsersPaginated(pagination database.Pagination) ([]user.User, database.Pagination, error) {
 	entityMaps, pagination, err := UserRepo.ReadPaginated(user.GetCollectionPath(), pagination)
 	if err != nil {
 		return []user.User{}, pagination, err
@@ -61,7 +61,7 @@ func GetAllUsersPaginated(pagination datastore.Pagination) ([]user.User, datasto
 }
 
 // QueryUsers retrieves all User entities according to given queries.
-func QueryUsers(queries []datastore.Query, pagination datastore.Pagination) ([]user.User, error) {
+func QueryUsers(queries []database.Query, pagination database.Pagination) ([]user.User, error) {
 	entityMaps, err := UserRepo.Query(user.GetCollectionPath(), queries, pagination)
 	if err != nil {
 		return []user.User{}, err
@@ -70,7 +70,7 @@ func QueryUsers(queries []datastore.Query, pagination datastore.Pagination) ([]u
 }
 
 // QueryUsersGroup retrieves all User entities according to given queries.
-func QueryUsersGroup(queries []datastore.Query) ([]user.User, error) {
+func QueryUsersGroup(queries []database.Query) ([]user.User, error) {
 	entityMaps, err := UserRepo.QueryGroup("users", queries)
 	if err != nil {
 		return []user.User{}, err

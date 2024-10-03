@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/datastore"
+	"github.com/bakeable/bkry/internal/server/database"
 )
 
 // GetEntityById retrieves a single entity from Datastore by kind and id.
@@ -104,7 +105,7 @@ func GetAllEntitiesByKind(kind string, ancestor *datastore.Key) ([]map[string]in
 }
 
 // QueryEntity retrieves the first entity returned from Datastore by kind and queries.
-func QueryEntity(kind string, queries []Query, pagination *Pagination, ancestor *datastore.Key) (map[string]interface{}, error) {
+func QueryEntity(kind string, queries []database.Query, pagination *Pagination, ancestor *datastore.Key) (map[string]interface{}, error) {
 	ctx := context.Background()
 
 	// Create query
@@ -142,7 +143,7 @@ func QueryEntity(kind string, queries []Query, pagination *Pagination, ancestor 
 }
 
 // QueryEntities retrieves multiple entities from Datastore by kind and queries.
-func QueryEntities(kind string, queries []Query, pagination *Pagination, ancestor *datastore.Key) ([]map[string]interface{}, error) {
+func QueryEntities(kind string, queries []database.Query, pagination *database.Pagination, ancestor *datastore.Key) ([]map[string]interface{}, error) {
 	ctx := context.Background()
 
 	// Create query
@@ -185,7 +186,7 @@ func QueryEntities(kind string, queries []Query, pagination *Pagination, ancesto
 }
 
 // GetPaginatedEntitiesByKind retrieves paginated entities from Datastore by kind.
-func GetPaginatedEntitiesByKind(kind string, pagination Pagination, ancestor *datastore.Key) ([]map[string]interface{}, *datastore.Cursor, error) {
+func GetPaginatedEntitiesByKind(kind string, pagination database.Pagination, ancestor *datastore.Key) ([]map[string]interface{}, *datastore.Cursor, error) {
 	ctx := context.Background()
 
 	// Create query

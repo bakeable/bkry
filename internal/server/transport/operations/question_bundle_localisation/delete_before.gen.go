@@ -1,0 +1,3 @@
+package question_bundle_localisation_operations
+
+func beforeDelete(questionBundleID string, questionBundleLocalisationID string) {}

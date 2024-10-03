@@ -1,5 +1,5 @@
 {{- range .Entities}}
-import { {{.TypeName}}, {{.TypeName}}List, create{{.TypeName}}Store } from './{{.EntityName}}'
+import { {{.TypeName}}, {{.TypeName}}Transporter, {{.TypeName}}Handler, create{{.TypeName}}Store } from './{{.EntityName}}'
 {{- end}}
 import { type JSONData } from "../base_classes/dto.d";
 import {
@@ -7,18 +7,6 @@ import {
   type EntityClass,
   type EntityTypeName,
 } from '../types/types.gen.d';
-
-
-const entityBuilder: Record<EntityName, ((pathVars?: any, data?: JSONData) => EntityClass)> = {
-{{- range .Entities}}
-  {{.EntityName}}: (
-    pathVars?: string 
-             | string[] 
-             | { {{- range .ParentsSnakeCase}}{{.}}_id: string, {{- end}}id: string }, 
-    data?: JSONData
-  ) => new {{.TypeName}}(pathVars, data),
-{{- end}}
-}
 
 const entityCollectionNameToEntityName: Record<string, EntityName> = Object.freeze({
 {{- range .Entities}}
@@ -39,13 +27,13 @@ const entityTypeName: Record<EntityTypeName, EntityTypeName> = Object.freeze({
 })
 
 export {
-  entityBuilder,
   entityCollectionNameToEntityName,
   entityNameToTypeName,
   entityTypeName,
 {{- range .Entities}}
   {{.TypeName}},
-  {{.TypeName}}List,
+  {{.TypeName}}Transporter,
+  {{.TypeName}}Handler,
   create{{.TypeName}}Store,
 {{- end}}
 }
