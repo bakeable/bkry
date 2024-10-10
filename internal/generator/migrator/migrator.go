@@ -53,18 +53,20 @@ func (m *Migrator) RemoveEntity(entity types.EntityConfig) error {
 		})
 
 		// Get the file path to delete
-		filePath := filepath.Join(templateFile.OutputDir, templateFile.OutputFileName + "." + templateFile.FileExtension)
+		filePath := filepath.Join(templateFile.OutputDir, templateFile.OutputFileName)
 
 
 		// If the output dir ends with the entity name, remove the directory
 		if filepath.Base(templateFile.OutputDir) == entity.EntityName {
 			// Check if the directory exists
+			fmt.Println("Removing directory " + templateFile.OutputDir)
 			if _, err := os.Stat(templateFile.OutputDir); err == nil {
 				// Remove the directory
 				os.RemoveAll(templateFile.OutputDir)
 			}
 		} else {
 			// Check if the file exists
+			fmt.Println("Removing file " + filePath)
 			if _, err := os.Stat(filePath); err == nil {
 				// Remove the file
 				os.Remove(filePath)

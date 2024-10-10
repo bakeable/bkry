@@ -2,6 +2,7 @@ package migrator
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -41,6 +42,7 @@ func (m *Migrator) GetOldConfigurations() []types.EntityConfig {
 	// Read directories in the generation directory
 	dirs, err := os.ReadDir(m.GenerationDir)
 	if err != nil {
+		fmt.Println("Error reading generations directory")
 		return m.GetNewConfigurations()
 	}
 

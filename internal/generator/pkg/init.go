@@ -142,7 +142,7 @@ func Run() {
 	// Get migrator
 	m := migrator.NewMigrator(
 		InputDir + "config/",
-		InputDir + "generation/",
+		InputDir + "generations/",
 		ServerDir,
 		ClientDir,
 		templateFiles,
