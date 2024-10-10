@@ -3,6 +3,7 @@ package types
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	utils "github.com/bakeable/bkry/tools"
 )
@@ -159,4 +160,76 @@ func (f *FieldConfig) DeepCopy() FieldConfig {
 		panic(err)
 	}
 	return copy
+}
+
+func (f *FieldConfig) IsModified(oldField FieldConfig) bool {
+	if f.FieldType != oldField.FieldType {
+		return true
+	}
+	if f.IsEnum != oldField.IsEnum {
+		return true
+	}
+	if f.IsChildStruct != oldField.IsChildStruct {
+		return true
+	}
+	if len(f.EnumValues) != len(oldField.EnumValues) {
+		return true
+	}
+	for i, enumValue := range f.EnumValues {
+		if enumValue != oldField.EnumValues[i] {
+			return true
+		}
+	}
+	if len(f.Fields) != len(oldField.Fields) {
+		return true
+	}
+	for i, field := range f.Fields {
+		if field.IsModified(oldField.Fields[i]) {
+			return true
+		}
+	}
+	return false
+}
+
+func (tf TemplateFile) DeepCopy() TemplateFile {
+	return TemplateFile{
+		TemplateDir: tf.TemplateDir,
+		FileName: tf.FileName,
+		FileExtension: tf.FileExtension,
+		OutputDir: tf.OutputDir,
+		OutputFileName: tf.OutputFileName,
+		ForceWrite: tf.ForceWrite,
+		InitializeOnly: tf.InitializeOnly,
+		InputData: tf.InputData,
+	}
+}
+
+func (tf TemplateFile) DeepCopyWithVariables(variables map[string]string) TemplateFile {
+	replaceVariables := func (input string) string {
+		for key, value := range variables {
+			input = strings.ReplaceAll(input, "{" + key + "}", value)
+		}
+		return input
+	}
+
+	return TemplateFile{
+		TemplateDir: replaceVariables(tf.TemplateDir),
+		FileName: replaceVariables(tf.FileName),
+		FileExtension: replaceVariables(tf.FileExtension),
+		OutputDir: replaceVariables(tf.OutputDir),
+		OutputFileName: replaceVariables(tf.OutputFileName),
+		ForceWrite: tf.ForceWrite,
+		InitializeOnly: tf.InitializeOnly,
+		InputData: tf.InputData,
+	}
+}
+
+func GetSingleEntityTemplateFiles(templateFiles []TemplateFile) []TemplateFile {
+	entityTemplateFiles := make([]TemplateFile, 0)
+	for _, tf := range templateFiles {
+		if tf.InputData == "single_entity" {
+			entityTemplateFiles = append(entityTemplateFiles, tf)
+		}
+	}
+	return entityTemplateFiles
 }

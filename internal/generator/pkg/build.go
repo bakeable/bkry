@@ -4,21 +4,12 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 	"text/template"
-)
-type TemplateFile struct {
-	TemplateDir string `json:"template_dir"`
-	FileName string `json:"file_name"`
-	FileExtension string `json:"file_extension"`
-	OutputDir string `json:"output_dir"`
-	OutputFileName string `json:"output_file_name"`
-	ForceWrite bool `json:"force_write"`
-	InitializeOnly bool `json:"initialize_only"`
-	InputData string `json:"input_data"`
-}
 
-func build(templateFile TemplateFile, data interface{}) {
+	"github.com/bakeable/bkry/internal/generator/types"
+)
+
+func build(templateFile types.TemplateFile, data interface{}) {
 	// Get the template data
 	templateDir := templateFile.TemplateDir
 	fileName := templateFile.FileName
@@ -75,37 +66,4 @@ func build(templateFile TemplateFile, data interface{}) {
 	}
 
 	fmt.Println("Generated " + filePath)
-}
-
-func (tf TemplateFile) DeepCopy() TemplateFile {
-	return TemplateFile{
-		TemplateDir: tf.TemplateDir,
-		FileName: tf.FileName,
-		FileExtension: tf.FileExtension,
-		OutputDir: tf.OutputDir,
-		OutputFileName: tf.OutputFileName,
-		ForceWrite: tf.ForceWrite,
-		InitializeOnly: tf.InitializeOnly,
-		InputData: tf.InputData,
-	}
-}
-
-func (tf TemplateFile) DeepCopyWithVariables(variables map[string]string) TemplateFile {
-	replaceVariables := func (input string) string {
-		for key, value := range variables {
-			input = strings.ReplaceAll(input, "{" + key + "}", value)
-		}
-		return input
-	}
-
-	return TemplateFile{
-		TemplateDir: replaceVariables(tf.TemplateDir),
-		FileName: replaceVariables(tf.FileName),
-		FileExtension: replaceVariables(tf.FileExtension),
-		OutputDir: replaceVariables(tf.OutputDir),
-		OutputFileName: replaceVariables(tf.OutputFileName),
-		ForceWrite: tf.ForceWrite,
-		InitializeOnly: tf.InitializeOnly,
-		InputData: tf.InputData,
-	}
 }

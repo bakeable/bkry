@@ -1,5 +1,17 @@
 package types
 
+type TemplateFile struct {
+	TemplateDir string `json:"template_dir"`
+	FileName string `json:"file_name"`
+	FileExtension string `json:"file_extension"`
+	OutputDir string `json:"output_dir"`
+	OutputFileName string `json:"output_file_name"`
+	ForceWrite bool `json:"force_write"`
+	InitializeOnly bool `json:"initialize_only"`
+	InputData string `json:"input_data"`
+}
+
+
 type EntityConfig struct {
 	ExcludedEndpoints []string `json:"excludedEndpoints"` // The excluded endpoints for the entity ["get", "get_all", "update", "create", "delete", "query", "find", "query_group"]
 	Fields []FieldConfig `json:"fields"` // The fields of the entity

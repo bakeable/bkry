@@ -8,9 +8,12 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/bakeable/bkry/internal/generator/migrator"
 	"github.com/bakeable/bkry/internal/generator/preprocessor"
+	"github.com/bakeable/bkry/internal/generator/types"
 )
 
+var InputDir = "/Users/robin/Github/bkry/input/"
 var OutputDir = "/Users/robin/Github/bkry/output/"
 var ServerDir = "/Users/robin/Github/bkry/internal/server/"
 var ClientDir = OutputDir + "client/"
@@ -63,9 +66,9 @@ func RetrieveTemplateFiles(rootDir string, item ConfigItem) ([]string, error) {
 }
 
 // ProcessTemplates traverses directories and reads the configuration for code generation
-func ProcessTemplates(rootDir string) ([]TemplateFile, error) {
-	// Create a slice of TemplateFile configurations
-	var templateFiles []TemplateFile = make([]TemplateFile, 0)
+func ProcessTemplates(rootDir string) ([]types.TemplateFile, error) {
+	// Create a slice of types.TemplateFile configurations
+	var templateFiles []types.TemplateFile = make([]types.TemplateFile, 0)
 
 	err := filepath.Walk(rootDir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -106,7 +109,7 @@ func ProcessTemplates(rootDir string) ([]TemplateFile, error) {
 						// Remove the extension from the template file name
 						templateFileName = strings.Split(templateFileName, ".")[0]
 
-						templateFiles = append(templateFiles, TemplateFile{
+						templateFiles = append(templateFiles, types.TemplateFile{
 							TemplateDir: 	templateDir,
 							FileName:   	templateFileName,
 							FileExtension: 	templateExtension,
@@ -135,6 +138,16 @@ func Run() {
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// Get migrator
+	m := migrator.NewMigrator(
+		InputDir + "config/",
+		InputDir + "generation/",
+		ServerDir,
+		ClientDir,
+		templateFiles,
+	)
+	m.Clean()
 
 	// Get preprocessor 
 	p := preprocessor.NewPreprocessor("/Users/robin/Github/bkry/input/config/")
