@@ -1,0 +1,53 @@
+import * as i from './interface.gen'
+import { {{ range .EnumValuesByType }}{{.EnumType}}, {{- end}} } from './enums.gen'
+import { AuditInfo } from '../../general/auditinfo'
+{{- range .TypeScriptImports }}
+{{.}}
+{{- end }}
+
+export class {{.TypeName}}Builder {
+
+    /// ///////////////////////////////////////
+    /// /////////// STATIC METHODS ////////////
+    /// ///////////////////////////////////////
+
+    static Default(): i.{{.TypeName}} {
+        return {
+            id: '',
+            created: new AuditInfo(),
+            modified: new AuditInfo(),
+        {{- range .Fields }}
+            {{- if .FieldTypeIsExternal }}
+            {{.JsonName}}: new {{.FieldTypeClient}}(),
+            {{- else if .IsChildStruct }}
+            {{.JsonName}}: {{if .IsArray}}[] as i.{{.FieldName}}[]{{ else }}{
+            {{- template "generateInitObject" .Fields }}
+            } satisfies i.{{.FieldName}}{{end}},
+            {{- else }}
+            {{.JsonName}}: {{.DefaultValueClient}},
+            {{- end }}
+        {{- end }}
+        } as i.{{.TypeName}}
+    }
+
+    static DefaultWith(data: Partial<i.{{.TypeName}}>): i.{{.TypeName}} {
+        const obj = {{.TypeName}}Builder.Default()
+        Object.assign(obj, data)
+        return obj as i.{{.TypeName}}
+    }
+}
+
+
+{{define "generateInitObject" }}
+{{- range . }}
+                {{- if .FieldTypeIsExternal }}
+                {{.JsonName}}: new {{.FieldTypeClient}}(),
+                {{- else if .IsChildStruct }}
+                {{.JsonName}}: {{if .IsArray}}[] as i.{{.FieldName}}[]{{ else }}{
+                {{- template "generateInitObject" .Fields }}
+                } satisfies i.{{.FieldName}}{{end}},
+                {{- else }}
+                {{.JsonName}}: {{.DefaultValueClient}},
+                {{- end }}
+{{- end }}
+{{- end }}

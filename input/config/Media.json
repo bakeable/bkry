@@ -4,6 +4,7 @@
     {
       "fieldName": "Author",
       "fieldType": "docref.DocRef",
+      "docRefType": "Author",
       "isArray": false,
       "isChildStruct": false,
       "isEnum": false,

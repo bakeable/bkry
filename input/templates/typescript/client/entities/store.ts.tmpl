@@ -161,11 +161,11 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
       }
 
       // Retrieve list
-      await {{.TypeName}}Transporter.GetAll({
+      await {{.TypeName}}Transporter.GetAll({{- if hasItems .ParentsSnakeCase}}{
         {{- range .ParentsSnakeCase}}
         {{.}}_id: {{.}}Id,
         {{- end}}
-      }).then(async (list) => {
+      }{{- end}}).then(async (list) => {
         list.forEach(({{.TypeNameLowercase}}) => {
           this.reinsert({{.TypeNameLowercase}})
         })
@@ -392,7 +392,5 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
 // Export a function to create a new instance of the store
 export function create{{.TypeName}}Store(): {{.TypeName}}Store {
   const store = use{{.TypeName}}Store()
-  // Run the initializeStore action when the store is created
-  store.initializeStore()
   return store as unknown as {{.TypeName}}Store // TODO: Fix this
 }

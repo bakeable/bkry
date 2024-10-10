@@ -1,5 +1,26 @@
 package types
 
+
+type Config struct {
+	InputDir string `json:"input_dir"`
+	OutputDir string `json:"output_dir"`
+	TemplateDir string `json:"template_dir"`
+	ServerDir string `json:"server_dir"`
+	ClientDir string `json:"client_dir"`
+	BackEndDir string `json:"backend_dir"`
+	Templates []TemplateConfigItem `json:"templates"`
+	GoAppName string `json:"go_app_name"`
+}
+
+type TemplateConfigItem struct {
+	Path       string `json:"path"`
+	OutputDir  string `json:"output_dir,omitempty"`
+	OutputFile string `json:"output_file,omitempty"`
+	Data       string `json:"data"`
+	InitializeOnly bool `json:"initialize_only,omitempty"`
+	ForceWrite bool `json:"force_write,omitempty"`
+}
+
 type TemplateFile struct {
 	TemplateDir string `json:"template_dir"`
 	FileName string `json:"file_name"`
@@ -52,6 +73,7 @@ type EntityConfig struct {
 type FieldConfig struct {
 	FieldName string `json:"fieldName"` // The name of the field
 	FieldType string `json:"fieldType"` // The type of the field
+	DocRefType string `json:"docRefType,omitempty"` // The underlying type of the document reference
 	IsArray bool `json:"isArray"` // Whether the field is an array
 	IsChildStruct bool `json:"isChildStruct"` // Whether the field is a child struct
 	IsEnum bool `json:"isEnum"` // Whether the field is an enum

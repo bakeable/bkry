@@ -1,0 +1,9 @@
+{
+    "input_dir": "/Users/robin/Github/bkry/input/",
+    "output_dir": "/Users/robin/Github/bkry-test/",
+    "server_dir": "backend/internal/server",
+    "client_dir": "client",
+    "backend_dir": "backend",
+    "template_dir": "templates",
+    "go_app_name": "brainbash"
+}

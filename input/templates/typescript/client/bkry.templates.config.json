@@ -1,0 +1,72 @@
+[
+    {
+        "path": "entities/enums.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "data": "single_entity"
+    },
+    {
+        "path": "entities/handler.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "output_file": "handler.ts",
+        "data": "single_entity"
+    },
+    {
+        "path": "entities/index.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "output_file": "index.ts",
+        "data": "single_entity"
+    },
+    {
+        "path": "entities/interface.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "data": "single_entity"
+    },
+    {
+        "path": "entities/builder.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "data": "single_entity"
+    },
+    {
+        "path": "entities/store.d.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "data": "single_entity"
+    },
+    {
+        "path": "entities/store.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "data": "single_entity"
+    },
+    {
+        "path": "entities/transport.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/{EntityName}",
+        "data": "single_entity"
+    },
+    {
+        "path": "types/types.d.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/types/",
+        "output_file": "types.gen.d.ts",
+        "data": "entity_overview",
+        "force_write": true
+    },
+    {
+        "path": "types/types.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/types/",
+        "output_file": "types.gen.ts",
+        "data": "entity_overview",
+        "force_write": true
+    },
+    {
+        "path": "index.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/entities/",
+        "output_file": "index.ts",
+        "data": "entity_overview",
+        "force_write": true
+    },
+    {
+        "path": "stores.ts.tmpl",
+        "output_dir": "{ClientDir}/src/data/",
+        "output_file": "stores.ts",
+        "data": "entity_overview",
+        "force_write": true
+    }
+]

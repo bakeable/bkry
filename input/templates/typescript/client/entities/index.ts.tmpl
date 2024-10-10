@@ -2,5 +2,6 @@ import { {{.TypeName}} } from './interface.gen'
 import { create{{.TypeName}}Store } from './store.gen'
 import { {{.TypeName}}Transporter } from './transport.gen'
 import { {{.TypeName}}Handler } from './handler'
+import { {{.TypeName}}Builder } from './builder.gen'
 
-export { {{.TypeName}}, {{.TypeName}}Transporter, {{.TypeName}}Handler, create{{.TypeName}}Store }
+export { type {{.TypeName}}, {{.TypeName}}Transporter, {{.TypeName}}Builder, {{.TypeName}}Handler, create{{.TypeName}}Store }

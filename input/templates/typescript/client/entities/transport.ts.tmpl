@@ -4,6 +4,7 @@ import { type IPagination, Pagination } from "../../general/pagination";
 import { Query } from "../../general/query";
 
 type {{.TypeName}}PathVariables = { 
+  [key: string]: string | undefined,
   {{- range .ParentsSnakeCase}}
   {{.}}_id: string,
   {{- end}}
@@ -30,7 +31,11 @@ export class {{.TypeName}}Transporter {
     let path = this.config.endpoint.toString()
     if (!params) return path
     for (const key in Object.keys(params)) {
+      if (!params[key]) continue
       path = path.replace(`{${key}}`, params[key])
+    }
+    if ("id" in params && !!params.id) {
+      path = path + "/" + params.id
     }
     return path
   }
@@ -69,11 +74,11 @@ export class {{.TypeName}}Transporter {
   ): Promise<{{.TypeName}}> {
     // Create
     const { item }: { item: {{.TypeName}} } = await request({
-      url: this.Endpoint({ 
+      url: this.Endpoint({{- if hasItems .ParentsSnakeCase}}{ 
         {{- range .ParentsSnakeCase}}
         {{.}}_id,
         {{- end}}
-      }),
+      }{{- end}}),
       method: "post",
       data,
     });
@@ -87,7 +92,7 @@ export class {{.TypeName}}Transporter {
   ): Promise<{{.TypeName}}> {
     // Update
     const { item }: { item: {{.TypeName}} } = await request({
-      url: this.Endpoint(data),
+      url: this.Endpoint(data as unknown as {{.TypeName}}PathVariables),
       method: "put",
       data,
     });
@@ -101,7 +106,7 @@ export class {{.TypeName}}Transporter {
     {{.}}_id,
     {{- end}}
     id,
-  }: {{.TypeName}}PathVariables): Promise<void> {
+  }: {{.TypeName}}PathVariables | {{.TypeName}}): Promise<void> {
     // Delete
     await request({
       url: this.Endpoint({ 

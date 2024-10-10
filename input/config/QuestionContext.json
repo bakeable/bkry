@@ -4,6 +4,7 @@
     {
       "fieldName": "Author",
       "fieldType": "docref.DocRef",
+      "docRefType": "Author",
       "isArray": false,
       "isChildStruct": false,
       "isEnum": false,
@@ -134,6 +135,7 @@
         {
           "fieldName": "Media",
           "fieldType": "docref.DocRef",
+          "docRefType": "Media",
           "isArray": false,
           "isChildStruct": false,
           "isEnum": false,

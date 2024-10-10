@@ -221,6 +221,9 @@ func (p *Preprocessor) processField(field types.FieldConfig, fieldParents []stri
 	if field.FieldTypeClient == "" {
 		field.FieldTypeClient = field.FieldType
 	}
+	if field.FieldTypeClient == "DocRef" {
+		field.FieldTypeClient = "DocRef<'" + field.DocRefType + "'>"
+	}
 
 	// Instellen van ouderinformatie voor het veld
 	field.Parents = fieldParents
@@ -246,7 +249,7 @@ func (p *Preprocessor) processField(field types.FieldConfig, fieldParents []stri
 			field.DefaultValueClient = "\"\""
 		} else {
 			if field.IsEnum {
-				field.DefaultValueClient = fmt.Sprintf("%sValues.%s", field.FieldType, field.DefaultValue)
+				field.DefaultValueClient = fmt.Sprintf("%s.%s", field.FieldType, strings.ToUpper(field.DefaultValue))
 			} else {
 				field.DefaultValueClient = fmt.Sprintf("\"%s\"", field.DefaultValue)
 			}

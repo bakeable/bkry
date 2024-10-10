@@ -3,7 +3,6 @@ package generator
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -14,127 +13,41 @@ import (
 )
 
 var InputDir = "/Users/robin/Github/bkry/input/"
-var OutputDir = "/Users/robin/Github/bkry/output/"
-var ServerDir = "/Users/robin/Github/bkry/internal/server/"
-var ClientDir = OutputDir + "client/"
-var BackEndDir = OutputDir + "backend/"
-var TemplateDir = "/Users/robin/Github/bkry/input/templates/"
+var GoAppName = "github.com/bakeable/bkry"
 
-type ConfigItem struct {
-	Path       string `json:"path"`
-	OutputDir  string `json:"output_dir,omitempty"`
-	OutputFile string `json:"output_file,omitempty"`
-	Data       string `json:"data"`
-	InitializeOnly bool `json:"initialize_only,omitempty"`
-	ForceWrite bool `json:"force_write,omitempty"`
-}
-
-// LoadConfig reads the config file from a template directory
-func LoadConfig(configPath string) ([]ConfigItem, error) {
-	var config []ConfigItem
-	file, err := ioutil.ReadFile(configPath)
+func LoadConfig(configPath string) (types.Config, error) {
+	file, err := os.ReadFile(configPath)
 	if err != nil {
-		return nil, err
+		return types.Config{}, err
 	}
+
+	var config types.Config
 	err = json.Unmarshal(file, &config)
 	if err != nil {
-		return nil, err
+		return config, err
 	}
+
+	// Adjust paths
+	config.TemplateDir = filepath.Join(InputDir, config.TemplateDir)
+	config.ServerDir = filepath.Join(config.OutputDir, config.ServerDir)
+	config.ClientDir = filepath.Join(config.OutputDir, config.ClientDir)
+	config.BackEndDir = filepath.Join(config.OutputDir, config.BackEndDir)
+
 	return config, nil
 }
 
-// RetrieveTemplateFiles handles globbing for output_dir and direct file path for output_file
-func RetrieveTemplateFiles(rootDir string, item ConfigItem) ([]string, error) {
-	var templateFiles []string
-	// Check if it's a glob pattern (output_dir defined)
-	if item.OutputDir != "" {
-		matches, err := filepath.Glob(filepath.Join(rootDir, item.Path))
-		if err != nil {
-			return nil, err
-		}
-		templateFiles = append(templateFiles, matches...)
-	} else if item.OutputFile != "" {
-		// Direct file, check if it exists
-		fullPath := filepath.Join(rootDir, item.Path)
-		if _, err := os.Stat(fullPath); err == nil {
-			templateFiles = append(templateFiles, fullPath)
-		} else {
-			return nil, err
-		}
-	}
-	return templateFiles, nil
-}
-
-// ProcessTemplates traverses directories and reads the configuration for code generation
-func ProcessTemplates(rootDir string) ([]types.TemplateFile, error) {
-	// Create a slice of types.TemplateFile configurations
-	var templateFiles []types.TemplateFile = make([]types.TemplateFile, 0)
-
-	err := filepath.Walk(rootDir, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-
-		// Check if we have a config file in the current directory
-		if info.IsDir() {
-			configPath := filepath.Join(path, "bkry.config.json")
-			if _, err := os.Stat(configPath); err == nil {
-				configItems, err := LoadConfig(configPath)
-				if err != nil {
-					return err
-				}
-
-				// Process each config item
-				for _, item := range configItems {
-					fmt.Printf("Processing template config: %s\n", item.Path)
-
-					// Retrieve the relevant template files
-					templateFilePaths, err := RetrieveTemplateFiles(path, item)
-					if err != nil {
-						return err
-					}
-
-					// Print the list of template files found
-					for _, filePath := range templateFilePaths {
-						fmt.Printf("Found template file: %s\n", filePath)
-						// Get the directory of the template file
-						templateDir := filepath.Dir(filePath)
-
-						// Get the template file name
-						templateFileName := strings.Split(filepath.Base(filePath), ".tmpl")[0]
-
-						// Get the extension of the template file
-						templateExtension := strings.Join(strings.Split(templateFileName, ".")[1:], ".")
-
-						// Remove the extension from the template file name
-						templateFileName = strings.Split(templateFileName, ".")[0]
-
-						templateFiles = append(templateFiles, types.TemplateFile{
-							TemplateDir: 	templateDir,
-							FileName:   	templateFileName,
-							FileExtension: 	templateExtension,
-							OutputDir:  	item.OutputDir,
-							OutputFileName: item.OutputFile,
-							ForceWrite: 	item.ForceWrite,
-							InitializeOnly: item.InitializeOnly,
-							InputData: 		item.Data,
-						})
-					}
-
-					// Additional processing logic for templates would go here
-				}
-			}
-		}
-
-		return nil
-	})
-
-	return templateFiles, err
-}
-
 func Run() {
+	// Read the bkry.config.json file in the input directory
+	configPath := InputDir + "bkry.config.json"
+	config, err := LoadConfig(configPath)
+	if err != nil {
+		fmt.Println("Error reading config file", configPath)
+		panic(err)
+	}
+
+
 	// Process templates
-	templateFiles, err := ProcessTemplates(TemplateDir)
+	templateFiles, err := ProcessTemplates(config.TemplateDir)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -143,8 +56,8 @@ func Run() {
 	m := migrator.NewMigrator(
 		InputDir + "config/",
 		InputDir + "generations/",
-		ServerDir,
-		ClientDir,
+		config.ServerDir,
+		config.ClientDir,
 		templateFiles,
 	)
 	m.Clean()
@@ -155,9 +68,9 @@ func Run() {
 	
 	for _, tmpl := range templateFiles {
 		templateFile := tmpl.DeepCopyWithVariables(map[string]string{
-			"ServerDir": ServerDir,
-			"ClientDir": ClientDir,
-			"BackEndDir": BackEndDir,
+			"ServerDir": config.ServerDir,
+			"ClientDir": config.ClientDir,
+			"BackEndDir": config.BackEndDir,
 		})
 		
 		
@@ -178,5 +91,33 @@ func Run() {
 				build(entityTemplateFile, entity)
 			}
 		}
+	}
+
+	// Walk through all generated files and replace GoAppName by config.GoAppName
+	err = filepath.Walk(config.OutputDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if !info.IsDir() {
+			file, err := os.ReadFile(path)
+			if err != nil {
+				return err
+			}
+
+			// Replace GoAppName
+			file = []byte(strings.ReplaceAll(string(file), GoAppName, config.GoAppName))
+
+			// Write the file
+			err = os.WriteFile(path, file, os.ModePerm)
+			if err != nil {
+				return err
+			}
+		}
+
+		return nil
+	})
+	if err != nil {
+		fmt.Println(err)
 	}
 }

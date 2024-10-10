@@ -19,6 +19,7 @@
     {
       "fieldName": "Media",
       "fieldType": "docref.DocRef",
+      "docRefType": "Media",
       "isArray": false,
       "isChildStruct": false,
       "isEnum": false,

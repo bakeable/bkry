@@ -1,10 +1,8 @@
 {{- range .Entities}}
-import { {{.TypeName}}, {{.TypeName}}Transporter, {{.TypeName}}Handler, create{{.TypeName}}Store } from './{{.EntityName}}'
+import { {{.TypeName}}, {{.TypeName}}Transporter, {{.TypeName}}Handler, {{.TypeName}}Builder, create{{.TypeName}}Store } from './{{.EntityName}}'
 {{- end}}
-import { type JSONData } from "../base_classes/dto.d";
 import {
   type EntityName,
-  type EntityClass,
   type EntityTypeName,
 } from '../types/types.gen.d';
 
@@ -31,9 +29,10 @@ export {
   entityNameToTypeName,
   entityTypeName,
 {{- range .Entities}}
-  {{.TypeName}},
+  type {{.TypeName}},
   {{.TypeName}}Transporter,
   {{.TypeName}}Handler,
+  {{.TypeName}}Builder,
   create{{.TypeName}}Store,
 {{- end}}
 }
