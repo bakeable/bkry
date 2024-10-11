@@ -1,3 +1,0 @@
-package product_package_localisation_operations
-
-func beforeDelete(productPackageID string, productPackageLocalisationID string) {}

@@ -36,21 +36,15 @@ func InitRoutes(r *gin.RouterGroup) {
 	})
 	{{- end}}
 
-	{{- if notIn "get_all" .ExcludedEndpoints}}
+	{{- if notIn "query" .ExcludedEndpoints}}
 	group.GET("", func(c *gin.Context) {
-		controllers.GetAllPaginated(c)
+		controllers.Query(c)
 	})
 	{{- end}}
 
 	{{- if notIn "get" .ExcludedEndpoints}}
 	group.GET(":{{.VarName}}", func(c *gin.Context) {
 		controllers.Get(c)
-	})
-	{{- end}}
-
-	{{- if notIn "query" .ExcludedEndpoints}}
-	group.POST("/query", func(c *gin.Context) {
-		controllers.Query(c)
 	})
 	{{- end}}
 

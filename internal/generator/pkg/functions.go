@@ -1,6 +1,10 @@
 package generator
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	utils "github.com/bakeable/bkry/tools"
+)
 
 func notIn(item string, list []string) bool {
     for _, b := range list {
@@ -32,4 +36,12 @@ func hasItems(input interface{}) bool {
     }
     
     return len(list) > 0
+}
+
+func pascalCaseToSnakeCase(s string) string {
+    return utils.PascalCaseToSnakeCase(s)
+}
+
+func pascalCaseToCamelCase(s string) string {
+    return utils.PascalCaseToCamelCase(s)
 }

@@ -3,7 +3,7 @@ package {{.EntityName}}_controllers
 import (
 	"net/http"
 	{{.EntityName}}_operations "github.com/bakeable/bkry/internal/server/transport/operations/{{.EntityName}}"
-	"strconv"
+	"encoding/json"
 	"github.com/bakeable/bkry/internal/server/database"
 	
 
@@ -15,44 +15,29 @@ import (
 //// THIS WAY, IT WON'T BE OVERWRITTEN AND THERE WON'T BE A CONTROLLER GENERATED
 
 func GetAllPaginated(c *gin.Context) {
-{{range .ParentsCamelCase}}
-	// Get {{.}} ID from URL
-	{{.}}ID := c.Param("{{.}}ID")
-{{end}}
 
 	// Fallback on GetAll if no pagination parameters are provided
-	if c.DefaultQuery("page_size", "") == "" || c.DefaultQuery("page_number", "") == "" {
+	if c.DefaultQuery("pagination", "") == "" {
 		GetAll(c)
 		return
 	}
+	
+{{- range .ParentsCamelCase}}
+	// Get {{.}} ID from URL
+	{{.}}ID := c.Param("{{.}}ID")
+{{- end}}
 
-	// Get page size
-	pageSizeStr := c.DefaultQuery("page_size", "10")
-	pageSize, err := strconv.Atoi(pageSizeStr)
+	var pagination database.Pagination
+	err := json.Unmarshal([]byte(c.Query("pagination")), &pagination)
 	if err != nil {
-		pageSize = 1
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-
-	// Get page number
-	pageNumberStr := c.DefaultQuery("page_number", "1")
-	pageNumber, err := strconv.Atoi(pageNumberStr)
-	if err != nil {
-		pageNumber = 1
-	}
-
-	// Get ordering parameters
-	orderBy := c.DefaultQuery("order_by", "id")
-	ascending := c.DefaultQuery("asc", "true") == "true"
 
 	// Get {{.EntityName}}
-	entities, pagination := {{.EntityName}}_operations.GetAllPaginated(getRepository(), {{if gt (len .ParentVars) 0}}{{.ParentVars}}, {{end}}database.Pagination{
-		PageSize:    pageSize,
-		PageNumber:  pageNumber,
-		OrderBy:     orderBy,
-		Ascending:   ascending,
-	})
+	entities, pagination := {{.EntityName}}_operations.GetAllPaginated(getRepository(), {{if gt (len .ParentVars) 0}}{{.ParentVars}}, {{end}}pagination)
 
 	// Return {{.EntityName}}
-	c.JSON(http.StatusOK, gin.H{ "items": entities, "pagination": pagination })
+	c.JSON(http.StatusOK, gin.H{ "items": entities, "page_info": pagination })
 
 }

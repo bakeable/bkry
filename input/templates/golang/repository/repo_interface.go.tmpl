@@ -25,7 +25,7 @@ type IRepository interface {
 	// GetAll{{.TypeNamePlural}}Paginated retrieves all {{.TypeName}} entities in a paginated manner.
 	GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, database.Pagination, error)
 	// Query{{.TypeNamePlural}} retrieves all {{.TypeName}} entities according to given queries.
-	Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error)
+	Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, database.Pagination, error)
 	// Query{{.TypeNamePlural}}Group retrieves all {{.TypeName}} entities according to given queries.
 	Query{{.TypeNamePlural}}Group(queries []database.Query) ([]{{.EntityName}}.{{.TypeName}}, error)
 	// Create{{.TypeName}} creates a new {{.TypeName}} entity.
@@ -64,7 +64,7 @@ func (Repository) GetAll{{.TypeNamePlural}}({{.ParentParams}}) ([]{{.EntityName}
 func (Repository) GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.ParentParams}}, {{end}}pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, database.Pagination, error) {
 	return GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentVars) 0}}{{.ParentVars}}, {{end}}pagination)
 }
-func (Repository) Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error) {
+func (Repository) Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, database.Pagination, error) {
 	return Query{{.TypeNamePlural}}({{.ParentVars}}{{if gt (len .ParentVars) 0}}, {{end}}queries, pagination)
 }
 func (Repository) Query{{.TypeNamePlural}}Group(queries []database.Query) ([]{{.EntityName}}.{{.TypeName}}, error) {

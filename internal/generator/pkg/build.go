@@ -28,6 +28,8 @@ func build(templateFile types.TemplateFile, data interface{}) {
 		"notIn": notIn,
 		"alreadyGenerated": alreadyGenerated,
 		"hasItems": hasItems,
+		"pascalCaseToSnakeCase": pascalCaseToSnakeCase,
+		"pascalCaseToCamelCase": pascalCaseToCamelCase,
 	}).ParseFiles(filepath.Join(templateDir, nonGeneratedFileName) + ".tmpl"))
 
 	// If an output file name is specified, use that

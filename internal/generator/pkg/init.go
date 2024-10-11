@@ -99,6 +99,10 @@ func Run() {
 			return err
 		}
 
+		if strings.Contains(path, "/.") || strings.Contains(path, "/node_modules/") {
+			return nil
+		}
+
 		if !info.IsDir() {
 			file, err := os.ReadFile(path)
 			if err != nil {

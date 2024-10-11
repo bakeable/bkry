@@ -71,11 +71,11 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
     contains(id: string): boolean {
       return (this.list as {{.TypeName}}[]).some((x: {{.TypeName}}) => x.id === id)
     },
-    async create({{range .ParentsCamelCase}}{{.}}Id: string, {{end}}{{.TypeNameLowercase}}: {{.TypeName}}): Promise<{{.TypeName}}> {
+    async create({{range .Parents}}{{pascalCaseToCamelCase .}}Id: string, {{end}}{{.TypeNameLowercase}}: {{.TypeName}}): Promise<{{.TypeName}}> {
       // Create {{.TypeNameLowercase}}
       const item = await {{.TypeName}}Transporter.Create({ 
-        {{- range .ParentsCamelCase}}
-        {{.}}_id: {{.}}Id,
+        {{- range .Parents}}
+        {{pascalCaseToSnakeCase .}}_id: {{pascalCaseToCamelCase .}}Id,
         {{- end}}
       }, {{.TypeNameLowercase}})
 
@@ -117,7 +117,7 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
       }
       this.updateKey += 1;
     },
-    async retrieve({{range .ParentsCamelCase}}{{.}}Id: string, {{end}}id: string, force = false): Promise<{{.TypeName}}> {
+    async retrieve({{range .Parents}}{{pascalCaseToCamelCase .}}Id: string, {{end}}id: string, force = false): Promise<{{.TypeName}}> {
       // Check if a refresh is required
       if (!force && !this.refreshRequired) {
         const {{.TypeNameLowercase}} = this.get(id)
@@ -128,8 +128,8 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
 
       // Get {{.TypeNameLowercase}}
       const {{.TypeNameLowercase}} = await {{.TypeName}}Transporter.Get({
-        {{- range .ParentsSnakeCase}}
-        {{.}}_id: {{.}}Id,
+        {{- range .Parents}}
+        {{pascalCaseToSnakeCase .}}_id: {{pascalCaseToCamelCase .}}Id,
         {{- end}}
         id,
       }).then(async (entity) => {
@@ -143,7 +143,7 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
 
       return {{.TypeNameLowercase}}
     },
-    async retrieveAll({{range .ParentsCamelCase}}{{.}}Id: string, {{end}}force = false): Promise<{
+    async retrieveAll({{range .Parents}}{{pascalCaseToCamelCase .}}Id: string, {{end}}force = false): Promise<{
       active: string | null
       items: {{.TypeName}}[]
     }> {
@@ -161,9 +161,9 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
       }
 
       // Retrieve list
-      await {{.TypeName}}Transporter.GetAll({{- if hasItems .ParentsSnakeCase}}{
-        {{- range .ParentsSnakeCase}}
-        {{.}}_id: {{.}}Id,
+      await {{.TypeName}}Transporter.GetAll({{- if hasItems .Parents}}{
+        {{- range .Parents}}
+        {{pascalCaseToSnakeCase .}}_id: {{pascalCaseToCamelCase .}}Id,
         {{- end}}
       }{{- end}}).then(async (list) => {
         list.forEach(({{.TypeNameLowercase}}) => {
@@ -186,7 +186,7 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
         items: this.list as {{.TypeName}}[],
       }
     },
-    async retrievePaginated({{range .ParentsCamelCase}}{{.}}Id: string, {{end}}pagination: Pagination, force = false): Promise<{
+    async retrievePaginated({{range .Parents}}{{pascalCaseToCamelCase .}}Id: string, {{end}}pagination: Pagination, force = false): Promise<{
       pagination: Pagination;
       items: {{.TypeName}}[];
     }> {
@@ -206,9 +206,9 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
       }
 
       // Retrieve list
-      const items = await {{.TypeName}}Transporter.GetPaginated({{- if hasItems .ParentsSnakeCase}}{
-        {{- range .ParentsSnakeCase}}
-        {{.}}_id: {{.}}Id,
+      const items = await {{.TypeName}}Transporter.GetPaginated({{- if hasItems .Parents}}{
+        {{- range .Parents}}
+        {{pascalCaseToSnakeCase .}}_id: {{pascalCaseToCamelCase .}}Id,
         {{- end}}
       }, {{- end}}pagination).then(async ({items, pagination }) => {
         // Set new pagination
@@ -242,7 +242,7 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
         items,
       };
     },
-    async query({{range .ParentsCamelCase}}{{.}}Id: string, {{end}}pagination: Pagination, queries: Query[], force = false): Promise<{
+    async query({{range .Parents}}{{pascalCaseToCamelCase .}}Id: string, {{end}}pagination: Pagination, queries: Query[], force = false): Promise<{
       pagination: Pagination;
       items: {{.TypeName}}[];
     }> {
@@ -262,9 +262,9 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
       }
 
       // Retrieve list
-      const items = await {{.TypeName}}Transporter.Query({{- if hasItems .ParentsSnakeCase}}{
-        {{- range .ParentsSnakeCase}}
-        {{.}}_id: {{.}}Id,
+      const items = await {{.TypeName}}Transporter.Query({{- if hasItems .Parents}}{
+        {{- range .Parents}}
+        {{pascalCaseToSnakeCase .}}_id: {{pascalCaseToCamelCase .}}Id,
         {{- end}}
       }, {{- end}}
         pagination,
@@ -302,7 +302,7 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
       };
     },
     async search(
-      {{range .ParentsCamelCase}}{{.}}Id: string, {{end}}
+      {{range .Parents}}{{pascalCaseToCamelCase .}}Id: string, {{end}}
       pagination: Pagination,
       search: string,
       force = false,
@@ -328,9 +328,9 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
       }
 
       // Retrieve list
-      const items = await {{.TypeName}}Transporter.Search({{- if hasItems .ParentsSnakeCase}}{
-        {{- range .ParentsSnakeCase}}
-        {{.}}_id: {{.}}Id,
+      const items = await {{.TypeName}}Transporter.Search({{- if hasItems .Parents}}{
+        {{- range .Parents}}
+        {{pascalCaseToSnakeCase .}}_id: {{pascalCaseToCamelCase .}}Id,
         {{- end}}
       }, {{- end}}
         pagination,

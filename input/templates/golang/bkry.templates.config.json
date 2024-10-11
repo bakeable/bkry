@@ -18,6 +18,7 @@
         "path": "repository/repository.go.tmpl",
         "output_dir": "{ServerDir}/database/repository/entities/",
         "output_file": "{EntityName}.gen.go",
+        "force_write": true,
         "data": "single_entity"
     },
     {

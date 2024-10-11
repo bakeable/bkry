@@ -6,8 +6,9 @@ import (
 	"strconv"
 	"strings"
 
-	"cloud.google.com/go/firestore"
 	"github.com/bakeable/bkry/internal/server/database"
+
+	"cloud.google.com/go/firestore"
 )
 
 func sortDirection(sortDesc bool) firestore.Direction {
@@ -64,6 +65,8 @@ func ReadDocumentsPaginated(collectionPath string, pagination database.Paginatio
 
 	// Calculate total pages
 	pagination.TotalPages = int(float64(pagination.Count) / float64(pagination.PageSize))
+	pagination.HasNextPage = pagination.PageNumber < pagination.TotalPages
+	pagination.HasPreviousPage = pagination.PageNumber > 1
 
 	return data, pagination, nil
 }

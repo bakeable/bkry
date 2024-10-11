@@ -16,7 +16,7 @@ export class {{.TypeName}}Transporter {
   /// //////// PRIVATE VARIABLES ////////////
   /// ///////////////////////////////////////
   static config = Object.freeze({
-    endpoint: "{{.Endpoint}}",
+    endpoint: "{{.ClientEndpoint}}",
   })
 
   /// ///////////////////////////////////////
@@ -30,7 +30,7 @@ export class {{.TypeName}}Transporter {
   private static Endpoint(params?: {{.TypeName}}PathVariables): string {
     let path = this.config.endpoint.toString()
     if (!params) return path
-    for (const key in Object.keys(params)) {
+    for (const key of Object.keys(params)) {
       if (!params[key]) continue
       path = path.replace(`{${key}}`, params[key])
     }

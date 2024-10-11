@@ -61,12 +61,12 @@ func GetAll{{.TypeNamePlural}}Paginated({{if gt (len .ParentParams) 0}}{{.Parent
 }
 
 // Query{{.TypeNamePlural}} retrieves all {{.TypeName}} entities according to given queries.
-func Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, error) {
-	entityMaps, err := {{.TypeName}}Repo.Query({{.EntityName}}.GetCollectionPath({{.ParentVars}}), queries, pagination)
+func Query{{.TypeNamePlural}}({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}queries []database.Query, pagination database.Pagination) ([]{{.EntityName}}.{{.TypeName}}, database.Pagination, error) {
+	entityMaps, pagination, err := {{.TypeName}}Repo.Query({{.EntityName}}.GetCollectionPath({{.ParentVars}}), queries, pagination)
 	if err != nil {
-		return []{{.EntityName}}.{{.TypeName}}{}, err
+		return []{{.EntityName}}.{{.TypeName}}{}, pagination, err
 	}
-	return {{.EntityName}}.DecodeAll(entityMaps), nil
+	return {{.EntityName}}.DecodeAll(entityMaps), pagination, nil
 }
 
 // Query{{.TypeNamePlural}}Group retrieves all {{.TypeName}} entities according to given queries.
