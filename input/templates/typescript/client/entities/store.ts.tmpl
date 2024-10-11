@@ -211,14 +211,20 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
         {{.}}_id: {{.}}Id,
         {{- end}}
       }, {{- end}}pagination).then(async ({items, pagination }) => {
+        // Set new pagination
+        newPagination = pagination.deepCopy();;
+
+        if (items === null) {
+          return []
+        }
+
+        // Reinsert items
         items.forEach(({{.TypeNameLowercase}}) => {
           this.reinsert({{.TypeNameLowercase}});
         });
 
-        // Set new pagination
-        newPagination = pagination.deepCopy();
 
-        return items;
+        return items
       });
 
       // Set cache
@@ -264,12 +270,18 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
         pagination,
         queries,
       ).then(async ({ items, pagination }) => {
+        // Set new pagination
+        newPagination = pagination.deepCopy();;
+
+        if (items === null) {
+          return []
+        }
+
+        // Reinsert items
         items.forEach(({{.TypeNameLowercase}}) => {
           this.reinsert({{.TypeNameLowercase}});
         });
 
-        // Set new pagination
-        newPagination = pagination.deepCopy();;
 
         return items
       });
@@ -324,12 +336,18 @@ export const use{{.TypeName}}Store = defineStore('{{.TypeNameLowercase}}Store', 
         pagination,
         search,
       ).then(async ({ items, pagination }) => {
+        // Set new pagination
+        newPagination = pagination.deepCopy();;
+
+        if (items === null) {
+          return []
+        }
+
+        // Reinsert items
         items.forEach(({{.TypeNameLowercase}}) => {
           this.reinsert({{.TypeNameLowercase}});
         });
 
-        // Set new pagination
-        newPagination = pagination.deepCopy();;
 
         return items
       });
