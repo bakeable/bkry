@@ -24,10 +24,17 @@ const entityTypeName: Record<EntityTypeName, EntityTypeName> = Object.freeze({
 {{- end}}
 })
 
+const entityBuilder = Object.freeze({
+{{- range .Entities}}
+  {{.TypeName}}: (data?: any) => {{.TypeName}}Builder.DefaultWith(data),
+{{- end}}
+})
+
 export {
   entityCollectionNameToEntityName,
   entityNameToTypeName,
   entityTypeName,
+  entityBuilder,
 {{- range .Entities}}
   type {{.TypeName}},
   {{.TypeName}}Transporter,

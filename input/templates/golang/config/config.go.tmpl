@@ -29,6 +29,19 @@ func GetDocumentPath({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}{{
 	return output
 }
 
+{{- if .IsLocalizable }}
+var localisationDocumentPath = "{{.DocumentPath}}/{{.EntityName}}_localisations/[LANGUAGE_ID]_[{{.VarName}}]"
+func GetLocalisationDocumentPath({{.ParentParams}}{{if gt (len .ParentParams) 0}}, {{end}}{{.VarName}} string, languageId string) string {
+	output := localisationDocumentPath
+	{{- range .ParentsCamelCase}}
+	output = strings.Replace(output, "[{{.}}ID]", {{.}}ID, -1)
+	{{- end}}
+	output = strings.Replace(output, "[LANGUAGE_ID]", languageId, -1)
+	output = strings.Replace(output, "[{{.VarName}}]", {{.VarName}}, -1)
+	return output
+}
+{{- end }}
+
 func (entity {{.TypeName}}) GetDocumentPath() string {
     return GetDocumentPath({{range .Parents}}entity.{{.}}ID, {{end}} entity.ID)
 }

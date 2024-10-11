@@ -2,6 +2,26 @@
   "excludedEndpoints": null,
   "fields": [
     {
+      "fieldName": "Status",
+      "fieldType": "Status",
+      "isArray": false,
+      "isChildStruct": false,
+      "isEnum": true,
+      "isLocalizable": true,
+      "enumValues": [
+        "Concept",
+        "Approved",
+        "Published"
+      ],
+      "jsonName": "status",
+      "defaultValue": "Concept",
+      "fields": null,
+      "description": "The current status of the product package",
+      "isRequired": true,
+      "isFixedAcrossLocalisations": false,
+      "arrayMatchOn": ""
+    },
+    {
       "fieldName": "LanguageID",
       "fieldType": "string",
       "isArray": false,
@@ -137,7 +157,7 @@
       "jsonName": "language_ids",
       "defaultValue": "",
       "fields": null,
-      "description": "A list of language id's in which the question bundle is available",
+      "description": "A list of language id's in which the product package is available",
       "isRequired": false,
       "isFixedAcrossLocalisations": false,
       "arrayMatchOn": ""

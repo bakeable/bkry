@@ -32,7 +32,14 @@ func Add(c *gin.Context) {
 	// Create {{.TypeName}}
 	id := {{.EntityName}}_operations.Save(getRepository(), {{if gt (len .ParentVars) 0}}{{.ParentVars}}, {{end}}entity, utils.GetEditorId(c))
 
-	// Return collected item ID
-	c.JSON(http.StatusCreated, gin.H{"id": id})
+	// Failed to create {{.EntityName}}
+	if id == nil {
+		c.JSON(http.StatusBadRequest, gin.H{ "error": "Failed to create {{.EntityName}}" })
+		return
+	}
+
+	// Return {{.EntityName}}
+	entity.ID = *id
+	c.JSON(http.StatusCreated, gin.H{ "item": entity })
 
 }
